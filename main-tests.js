@@ -53,6 +53,10 @@ describe('OLSKFlexAuthIdentityIsStorageAddress', function test_OLSKFlexAuthIdent
 		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa@charlie.delta'), true);
 	});
 
+	it('returns true if subdomain', function() {
+		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa@charlie.delta.echo'), true);
+	});
+
 });
 
 describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
