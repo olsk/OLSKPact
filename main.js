@@ -83,6 +83,12 @@ const mod = {
 			})());
 		}
 
+		if (inputData.OLSKFlexAuthType === mod.OLSKFlexAuthTypeEmail()) {
+			if (!outputData.OLSKFlexAuthIdentity && !mod.OLSKFlexAuthIdentityIsStorageAddress(inputData.OLSKFlexAuthIdentity)) {
+				_error('OLSKFlexAuthIdentity', 'OLSKErrorNotValid');
+			}
+		}
+
 		return Object.entries(outputData).length ? outputData : null;
 	},
 

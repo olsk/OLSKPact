@@ -215,4 +215,26 @@ describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 	
 	});
 
+	context('OLSKFlexAuthTypeEmail', function () {
+
+		const uItemEmail = function (inputData) {
+			return {
+				OLSKFlexAuthType: mod.OLSKFlexAuthTypeEmail(),
+				OLSKFlexAuthIdentity: 'alfa@bravo.charlie',
+				OLSKFlexAuthProof: 'bravo',
+			};
+		};
+
+		it('returns object if OLSKFlexAuthIdentity not valid', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItem(uItemEmail(), {
+				OLSKFlexAuthIdentity: 'alfabravo.charlie',
+			})), {
+				OLSKFlexAuthIdentity: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
+	});
+
 });
