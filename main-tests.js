@@ -29,6 +29,22 @@ describe('OLSKFlexAuthTypes', function test_OLSKFlexAuthTypes() {
 
 });
 
+describe('OLSKFlexAuthIsFilledString', function test_OLSKFlexAuthIsFilledString() {
+
+	it('throws false if not string', function() {
+		deepEqual(mod.OLSKFlexAuthIsFilledString(null), false);
+	});
+
+	it('returns false if not filled', function() {
+		deepEqual(mod.OLSKFlexAuthIsFilledString(' '), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mod.OLSKFlexAuthIsFilledString('a'), true);
+	});
+
+});
+
 describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 
 	const uItem = function (inputData) {
@@ -60,7 +76,7 @@ describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 			OLSKFlexAuthIdentity: null,
 		})), {
 			OLSKFlexAuthIdentity: [
-				'OLSKErrorNotString',
+				'OLSKErrorNotFilled',
 			],
 		});
 	});
@@ -80,7 +96,7 @@ describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 			OLSKFlexAuthProof: null,
 		})), {
 			OLSKFlexAuthProof: [
-				'OLSKErrorNotString',
+				'OLSKErrorNotFilled',
 			],
 		});
 	});

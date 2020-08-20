@@ -15,6 +15,10 @@ const mod = {
 		];
 	},
 
+	OLSKFlexAuthIsFilledString (inputData) {
+		return typeof inputData === 'string' && inputData.trim() !== '';
+	},
+
 	OLSKFlexAuthModelErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('OLSKErrorInputNotValid');
@@ -32,25 +36,13 @@ const mod = {
 			_error('OLSKFlexAuthType', 'OLSKErrorNotAuthType');
 		}
 
-		_error('OLSKFlexAuthIdentity', (function() {
-			if (typeof inputData.OLSKFlexAuthIdentity !== 'string') {
-				return 'OLSKErrorNotString';
-			}
+		if (!mod.OLSKFlexAuthIsFilledString(inputData.OLSKFlexAuthIdentity)) {
+			_error('OLSKFlexAuthIdentity', 'OLSKErrorNotFilled');
+		}
 
-			if (inputData.OLSKFlexAuthIdentity.trim() === '') {
-				return 'OLSKErrorNotFilled';
-			}
-		})());
-
-		_error('OLSKFlexAuthProof', (function() {
-			if (typeof inputData.OLSKFlexAuthProof !== 'string') {
-				return 'OLSKErrorNotString';
-			}
-
-			if (inputData.OLSKFlexAuthProof.trim() === '') {
-				return 'OLSKErrorNotFilled';
-			}
-		})());
+		if (!mod.OLSKFlexAuthIsFilledString(inputData.OLSKFlexAuthProof)) {
+			_error('OLSKFlexAuthProof', 'OLSKErrorNotFilled');
+		}
 
 		if (inputData.OLSKFlexAuthType === mod.OLSKFlexAuthTypeStorage()) {
 			const metadata = inputData.OLSKFlexAuthMetadata;
@@ -60,15 +52,11 @@ const mod = {
 					return 'OLSKErrorNotObject';
 				}
 
-				if (typeof metadata.OLSKFlexAuthMetadataModuleName !== 'string') {
+				if (!mod.OLSKFlexAuthIsFilledString(metadata.OLSKFlexAuthMetadataModuleName)) {
 					return 'OLSKErrorNotValid';
 				}
 
-				if (metadata.OLSKFlexAuthMetadataModuleName.trim() === '') {
-					return 'OLSKErrorNotValid';
-				}
-
-				if (typeof metadata.OLSKFlexAuthMetadataFolderPath !== 'string') {
+				if (!mod.OLSKFlexAuthIsFilledString(metadata.OLSKFlexAuthMetadataFolderPath)) {
 					return 'OLSKErrorNotValid';
 				}
 
