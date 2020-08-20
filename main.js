@@ -15,7 +15,7 @@ const mod = {
 		];
 	},
 
-	OLSKFlexAuthIsFilledString (inputData) {
+	_OLSKFlexAuthIsFilledString (inputData) {
 		return typeof inputData === 'string' && inputData.trim() !== '';
 	},
 
@@ -37,11 +37,11 @@ const mod = {
 			_error('OLSKFlexAuthType', 'OLSKErrorNotAuthType');
 		}
 
-		if (!mod.OLSKFlexAuthIsFilledString(inputData.OLSKFlexAuthIdentity)) {
+		if (!mod._OLSKFlexAuthIsFilledString(inputData.OLSKFlexAuthIdentity)) {
 			_error('OLSKFlexAuthIdentity', 'OLSKErrorNotFilled');
 		}
 
-		if (!mod.OLSKFlexAuthIsFilledString(inputData.OLSKFlexAuthProof)) {
+		if (!mod._OLSKFlexAuthIsFilledString(inputData.OLSKFlexAuthProof)) {
 			_error('OLSKFlexAuthProof', 'OLSKErrorNotFilled');
 		}
 
@@ -53,11 +53,11 @@ const mod = {
 					return 'OLSKErrorNotObject';
 				}
 
-				if (!mod.OLSKFlexAuthIsFilledString(metadata.OLSKFlexAuthMetadataModuleName)) {
+				if (!mod._OLSKFlexAuthIsFilledString(metadata.OLSKFlexAuthMetadataModuleName)) {
 					return 'OLSKErrorNotValid';
 				}
 
-				if (!mod.OLSKFlexAuthIsFilledString(metadata.OLSKFlexAuthMetadataFolderPath)) {
+				if (!mod._OLSKFlexAuthIsFilledString(metadata.OLSKFlexAuthMetadataFolderPath)) {
 					return 'OLSKErrorNotValid';
 				}
 
