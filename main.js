@@ -20,91 +20,75 @@ const mod = {
 			throw new Error('OLSKErrorInputNotValid');
 		}
 
-		const errors = {};
+		const outputData = {};
+		const _error = function (param1, param2) {
+			if (!param2) {
+				return;
+			}
+			outputData[param1] = (outputData[param1] || []).concat(param2);
+		};
 
 		if (!mod.OLSKFlexAuthTypes().includes(inputData.OLSKFlexAuthType)) {
-			errors.OLSKFlexAuthType = [
-				'OLSKErrorNotAuthType',
-			];
+			_error('OLSKFlexAuthType', 'OLSKErrorNotAuthType');
 		}
 
-		errors.OLSKFlexAuthIdentity = (function() {
+		_error('OLSKFlexAuthIdentity', (function() {
 			if (typeof inputData.OLSKFlexAuthIdentity !== 'string') {
-				return [
-					'OLSKErrorNotString',
-				];
+				return 'OLSKErrorNotString';
 			}
 
 			if (inputData.OLSKFlexAuthIdentity.trim() === '') {
-				return [
-					'OLSKErrorNotFilled',
-				];
+				return 'OLSKErrorNotFilled';
 			}
-		})();
+		})());
 
-		errors.OLSKFlexAuthProof = (function() {
+		_error('OLSKFlexAuthProof', (function() {
 			if (typeof inputData.OLSKFlexAuthProof !== 'string') {
-				return [
-					'OLSKErrorNotString',
-				];
+				return 'OLSKErrorNotString';
 			}
 
 			if (inputData.OLSKFlexAuthProof.trim() === '') {
-				return [
-					'OLSKErrorNotFilled',
-				];
+				return 'OLSKErrorNotFilled';
 			}
-		})();
+		})());
 
 		if (inputData.OLSKFlexAuthType === mod.OLSKFlexAuthTypeStorage()) {
 			const metadata = inputData.OLSKFlexAuthMetadata;
 
-			errors.OLSKFlexAuthMetadata = (function() {
+			_error('OLSKFlexAuthMetadata', (function() {
 				if (typeof metadata !== 'object' || metadata === null) {
-					return [
-						'OLSKErrorNotObject',
-					];
+					return 'OLSKErrorNotObject';
 				}
 
 				if (typeof metadata.OLSKFlexAuthMetadataModuleName !== 'string') {
-					return [
-						'OLSKErrorNotValid',
-					];
+					return 'OLSKErrorNotValid';
 				}
 
 				if (metadata.OLSKFlexAuthMetadataModuleName.trim() === '') {
-					return [
-						'OLSKErrorNotValid',
-					];
+					return 'OLSKErrorNotValid';
 				}
 
 				if (typeof metadata.OLSKFlexAuthMetadataFolderPath !== 'string') {
-					return [
-						'OLSKErrorNotValid',
-					];
+					return 'OLSKErrorNotValid';
 				}
 
 				if (!metadata.OLSKFlexAuthMetadataFolderPath.slice(0, -1).trim()) {
-					return [
-						'OLSKErrorNotValid',
-					];
+					return 'OLSKErrorNotValid';
 				}
 
 				if (metadata.OLSKFlexAuthMetadataFolderPath.slice(-1) !== '/') {
-					return [
-						'OLSKErrorNotValid',
-					];
+					return 'OLSKErrorNotValid';
 				}
-			})();
+			})());
 		}
 
-		Object.keys(errors).forEach(function (e) {
-			if (!errors[e]) {
-				delete errors[e];
+		Object.keys(outputData).forEach(function (e) {
+			if (!outputData[e]) {
+				delete outputData[e];
 			}
-		})
+		});
 
-		return Object.entries(errors).length ? errors : null;
+		return Object.entries(outputData).length ? outputData : null;
 	},
 
 };
