@@ -28,25 +28,81 @@ const mod = {
 			];
 		}
 
-		if (typeof inputData.OLSKFlexAuthIdentity !== 'string') {
-			errors.OLSKFlexAuthIdentity = [
-				'OLSKErrorNotString',
-			];
-		} else if (inputData.OLSKFlexAuthIdentity.trim() === '') {
-			errors.OLSKFlexAuthIdentity = [
-				'OLSKErrorNotFilled',
-			];
+		errors.OLSKFlexAuthIdentity = (function() {
+			if (typeof inputData.OLSKFlexAuthIdentity !== 'string') {
+				return [
+					'OLSKErrorNotString',
+				];
+			}
+
+			if (inputData.OLSKFlexAuthIdentity.trim() === '') {
+				return [
+					'OLSKErrorNotFilled',
+				];
+			}
+		})();
+
+		errors.OLSKFlexAuthProof = (function() {
+			if (typeof inputData.OLSKFlexAuthProof !== 'string') {
+				return [
+					'OLSKErrorNotString',
+				];
+			}
+
+			if (inputData.OLSKFlexAuthProof.trim() === '') {
+				return [
+					'OLSKErrorNotFilled',
+				];
+			}
+		})();
+
+		if (inputData.OLSKFlexAuthType === mod.OLSKFlexAuthTypeStorage()) {
+			const metadata = inputData.OLSKFlexAuthMetadata;
+
+			errors.OLSKFlexAuthMetadata = (function() {
+				if (typeof metadata !== 'object' || metadata === null) {
+					return [
+						'OLSKErrorNotObject',
+					];
+				}
+
+				if (typeof metadata.OLSKFlexAuthMetadataModuleName !== 'string') {
+					return [
+						'OLSKErrorNotValid',
+					];
+				}
+
+				if (metadata.OLSKFlexAuthMetadataModuleName.trim() === '') {
+					return [
+						'OLSKErrorNotValid',
+					];
+				}
+
+				if (typeof metadata.OLSKFlexAuthMetadataFolderPath !== 'string') {
+					return [
+						'OLSKErrorNotValid',
+					];
+				}
+
+				if (!metadata.OLSKFlexAuthMetadataFolderPath.slice(0, -1).trim()) {
+					return [
+						'OLSKErrorNotValid',
+					];
+				}
+
+				if (metadata.OLSKFlexAuthMetadataFolderPath.slice(-1) !== '/') {
+					return [
+						'OLSKErrorNotValid',
+					];
+				}
+			})();
 		}
 
-		if (typeof inputData.OLSKFlexAuthProof !== 'string') {
-			errors.OLSKFlexAuthProof = [
-				'OLSKErrorNotString',
-			];
-		} else if (inputData.OLSKFlexAuthProof.trim() === '') {
-			errors.OLSKFlexAuthProof = [
-				'OLSKErrorNotFilled',
-			];
-		}
+		Object.keys(errors).forEach(function (e) {
+			if (!errors[e]) {
+				delete errors[e];
+			}
+		})
 
 		return Object.entries(errors).length ? errors : null;
 	},

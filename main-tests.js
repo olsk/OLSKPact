@@ -99,4 +99,81 @@ describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 		deepEqual(mod.OLSKFlexAuthModelErrors(uItem()), null);
 	});
 
+	context('OLSKFlexAuthTypeStorage', function () {
+
+		const uItemStorage = function (inputData) {
+			return {
+				OLSKFlexAuthType: mod.OLSKFlexAuthTypeStorage(),
+				OLSKFlexAuthIdentity: 'alfa',
+				OLSKFlexAuthProof: 'bravo',
+				OLSKFlexAuthMetadata: Object.assign({
+					OLSKFlexAuthMetadataModuleName: 'charlie',
+					OLSKFlexAuthMetadataFolderPath: 'delta/',
+				}, inputData),
+			};
+		};
+
+		it('returns object if OLSKFlexAuthMetadata not object', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItem({
+				OLSKFlexAuthType: mod.OLSKFlexAuthTypeStorage(),
+				OLSKFlexAuthMetadata: null,
+			})), {
+				OLSKFlexAuthMetadata: [
+					'OLSKErrorNotObject',
+				],
+			});
+		});
+
+		it('returns object if OLSKFlexAuthMetadataModuleName not string', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
+				OLSKFlexAuthMetadataModuleName: null,
+			})), {
+				OLSKFlexAuthMetadata: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
+		it('returns object if OLSKFlexAuthMetadataModuleName not filled', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
+				OLSKFlexAuthMetadataModuleName: ' ',
+			})), {
+				OLSKFlexAuthMetadata: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
+		it('returns object if OLSKFlexAuthMetadataFolderPath not string', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
+				OLSKFlexAuthMetadataFolderPath: null,
+			})), {
+				OLSKFlexAuthMetadata: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
+		it('returns object if OLSKFlexAuthMetadataFolderPath not filled', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
+				OLSKFlexAuthMetadataFolderPath: '/',
+			})), {
+				OLSKFlexAuthMetadata: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
+		it('returns object if OLSKFlexAuthMetadataFolderPath not terminated', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
+				OLSKFlexAuthMetadataFolderPath: 'alfa',
+			})), {
+				OLSKFlexAuthMetadata: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+	
+	});
+
 });
