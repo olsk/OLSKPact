@@ -19,6 +19,14 @@ const mod = {
 		return typeof inputData === 'string' && inputData.trim() !== '';
 	},
 
+	OLSKFlexAuthIdentityIsStorageAddress (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('OLSKErrorInputNotValid');
+		}
+
+		return !!inputData.match(/\w+\@\w+\.\w+/);
+	},
+
 	OLSKFlexAuthModelErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('OLSKErrorInputNotValid');
@@ -29,7 +37,7 @@ const mod = {
 			if (!param2) {
 				return;
 			}
-			
+
 			outputData[param1] = (outputData[param1] || []).concat(param2);
 		};
 

@@ -29,6 +29,32 @@ describe('OLSKFlexAuthTypes', function test_OLSKFlexAuthTypes() {
 
 });
 
+describe('OLSKFlexAuthIdentityIsStorageAddress', function test_OLSKFlexAuthIdentityIsStorageAddress() {
+
+	it('throws if not string', function () {
+		throws(function () {
+			mod.OLSKFlexAuthIdentityIsStorageAddress(null)
+		}, /OLSKErrorInputNotValid/);
+	});
+
+	it('returns false if no @', function() {
+		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfacharlie.delta'), false);
+	});
+
+	it('returns false if no .', function() {
+		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa@charliedelta'), false);
+	});
+
+	it('returns false if space', function() {
+		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa @charlie.delta'), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa@charlie.delta'), true);
+	});
+
+});
+
 describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 
 	const uItem = function (inputData) {
