@@ -29,6 +29,7 @@ const mod = {
 			if (!param2) {
 				return;
 			}
+			
 			outputData[param1] = (outputData[param1] || []).concat(param2);
 		};
 
@@ -69,12 +70,6 @@ const mod = {
 				}
 			})());
 		}
-
-		Object.keys(outputData).forEach(function (e) {
-			if (!outputData[e]) {
-				delete outputData[e];
-			}
-		});
 
 		return Object.entries(outputData).length ? outputData : null;
 	},
