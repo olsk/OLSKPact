@@ -57,12 +57,12 @@ describe('OLSKFlexAuthIdentityIsStorageAddress', function test_OLSKFlexAuthIdent
 
 describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 
-	const uItem = function (inputData) {
-		return Object.assign({
+	const uItem = function () {
+		return Object.assign.apply(null, [{
 			OLSKFlexAuthType: mod.OLSKFlexAuthTypeEmail(),
-			OLSKFlexAuthIdentity: 'alfa',
-			OLSKFlexAuthProof: 'bravo',
-		}, inputData);
+			OLSKFlexAuthIdentity: 'alfa@bravo.charlie',
+			OLSKFlexAuthProof: 'delta',
+		}].concat(Array.from(arguments)));
 	};
 
 	it('throws if not object', function() {
@@ -130,7 +130,7 @@ describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 		const uItemStorage = function (inputData) {
 			return {
 				OLSKFlexAuthType: mod.OLSKFlexAuthTypeStorage(),
-				OLSKFlexAuthIdentity: 'alfa',
+				OLSKFlexAuthIdentity: 'alfa@bravo.charlie',
 				OLSKFlexAuthProof: 'bravo',
 				OLSKFlexAuthMetadata: Object.assign({
 					OLSKFlexAuthMetadataModuleName: 'charlie',
@@ -139,9 +139,18 @@ describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
 			};
 		};
 
+		it('returns object if OLSKFlexAuthIdentity not valid', function() {
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItem(uItemStorage(), {
+				OLSKFlexAuthIdentity: 'alfabravo.charlie',
+			})), {
+				OLSKFlexAuthIdentity: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
 		it('returns object if OLSKFlexAuthMetadata not object', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItem({
-				OLSKFlexAuthType: mod.OLSKFlexAuthTypeStorage(),
+			deepEqual(mod.OLSKFlexAuthModelErrors(uItem(uItemStorage(), {
 				OLSKFlexAuthMetadata: null,
 			})), {
 				OLSKFlexAuthMetadata: [

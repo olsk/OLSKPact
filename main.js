@@ -54,6 +54,10 @@ const mod = {
 		}
 
 		if (inputData.OLSKFlexAuthType === mod.OLSKFlexAuthTypeStorage()) {
+			if (!mod.OLSKFlexAuthIdentityIsStorageAddress(inputData.OLSKFlexAuthIdentity)) {
+				_error('OLSKFlexAuthIdentity', 'OLSKErrorNotValid');
+			}
+
 			const metadata = inputData.OLSKFlexAuthMetadata;
 
 			_error('OLSKFlexAuthMetadata', (function() {
