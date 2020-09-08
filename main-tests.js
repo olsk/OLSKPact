@@ -363,8 +363,8 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 
 describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 
-	const uItem = function () {
-		return Object.assign.apply(null, [{
+	const uItem = function (inputData = {}) {
+		return Object.assign({
 			OLSKFlexGrantPublicNumbers: ['alfa'],
 			OLSKFlexGrantIdentity: 'bravo',
 			OLSKFlexGrantProject: 'charlie',
@@ -373,7 +373,7 @@ describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 			OLSKFlexGrantContribution: 1,
 			OLSKFlexGrantProcessor: mod.OLSKFlexPayProcessorStripe(),
 			OLSKFlexGrantProcessorReference: 'delta',
-		}].concat(Array.from(arguments)));
+		}, inputData);
 	};
 
 	it('throws if not object', function() {
