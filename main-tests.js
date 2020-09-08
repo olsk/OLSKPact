@@ -373,6 +373,7 @@ describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 			OLSKFlexGrantContribution: 1,
 			OLSKFlexGrantProcessor: mod.OLSKFlexPayProcessorStripe(),
 			OLSKFlexGrantProcessorReference: 'delta',
+			OLSKFlexGrantActive: true,
 		}, inputData);
 	};
 
@@ -498,6 +499,16 @@ describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 		})), {
 			OLSKFlexGrantProcessorReference: [
 				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantActive not boolean', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantActive: 'true',
+		})), {
+			OLSKFlexGrantActive: [
+				'OLSKErrorNotBoolean',
 			],
 		});
 	});

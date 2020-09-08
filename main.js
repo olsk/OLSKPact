@@ -198,6 +198,10 @@ const mod = {
 			_error('OLSKFlexGrantProcessorReference', 'OLSKErrorNotFilled');
 		}
 
+		if (typeof inputData.OLSKFlexGrantActive !== 'boolean') {
+			_error('OLSKFlexGrantActive', 'OLSKErrorNotBoolean');
+		}
+
 		return Object.entries(outputData).length ? outputData : null;
 	},
 
