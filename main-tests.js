@@ -360,3 +360,150 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 	});
 
 });
+
+describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
+
+	const uItem = function () {
+		return Object.assign.apply(null, [{
+			OLSKFlexGrantPublicNumbers: ['alfa'],
+			OLSKFlexGrantIdentity: 'bravo',
+			OLSKFlexGrantProject: 'charlie',
+			OLSKFlexGrantStartDate: new Date(),
+			OLSKFlexGrantEndDate: new Date(),
+			OLSKFlexGrantContribution: 1,
+			OLSKFlexGrantProcessor: mod.OLSKFlexPayProcessorStripe(),
+			OLSKFlexGrantProcessorReference: 'delta',
+		}].concat(Array.from(arguments)));
+	};
+
+	it('throws if not object', function() {
+		throws(function() {
+			mod.OLSKFlexGrantModelErrors(null);
+		}, /OLSKErrorInputNotValid/);
+	});
+
+	it('returns object if OLSKFlexGrantPublicNumbers not array', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantPublicNumbers: null,
+		})), {
+			OLSKFlexGrantPublicNumbers: [
+				'OLSKErrorNotArray',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantPublicNumbers not filled', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantPublicNumbers: [],
+		})), {
+			OLSKFlexGrantPublicNumbers: [
+				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantIdentity not string', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantIdentity: null,
+		})), {
+			OLSKFlexGrantIdentity: [
+				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantIdentity not filled', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantIdentity: ' ',
+		})), {
+			OLSKFlexGrantIdentity: [
+				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantProject not string', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantProject: null,
+		})), {
+			OLSKFlexGrantProject: [
+				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantProject not filled', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantProject: ' ',
+		})), {
+			OLSKFlexGrantProject: [
+				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantStartDate not date', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantStartDate: new Date('alfa'),
+		})), {
+			OLSKFlexGrantStartDate: [
+				'OLSKErrorNotDate',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantEndDate not date', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantEndDate: new Date('alfa'),
+		})), {
+			OLSKFlexGrantEndDate: [
+				'OLSKErrorNotDate',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantContribution not number', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantContribution: '1',
+		})), {
+			OLSKFlexGrantContribution: [
+				'OLSKErrorNotNumber',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantProcessor not valid', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantProcessor: null,
+		})), {
+			OLSKFlexGrantProcessor: [
+				'OLSKErrorNotAuthType',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantProcessorReference not string', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantProcessorReference: null,
+		})), {
+			OLSKFlexGrantProcessorReference: [
+				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantProcessorReference not filled', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantProcessorReference: ' ',
+		})), {
+			OLSKFlexGrantProcessorReference: [
+				'OLSKErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns null', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem()), null);
+	});
+
+});

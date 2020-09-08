@@ -2,6 +2,10 @@ const uIsFilled = function (inputData) {
 	return typeof inputData === 'string' && inputData.trim() !== '';
 };
 
+const uIsDate = function (inputData) {
+	return (inputData instanceof Date) && !Number.isNaN(inputData.getTime());
+}
+
 const mod = {
 
 	OLSKFlexAuthTypeEmail () {
@@ -141,6 +145,57 @@ const mod = {
 					return 'OLSKErrorNotObject';
 				}
 			})());
+		}
+
+		return Object.entries(outputData).length ? outputData : null;
+	},
+
+	OLSKFlexGrantModelErrors (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('OLSKErrorInputNotValid');
+		}
+
+		const outputData = {};
+		const _error = function (param1, param2) {
+			if (!param2) {
+				return;
+			}
+
+			outputData[param1] = (outputData[param1] || []).concat(param2);
+		};
+
+		if (!Array.isArray(inputData.OLSKFlexGrantPublicNumbers)) {
+			_error('OLSKFlexGrantPublicNumbers', 'OLSKErrorNotArray');
+		} else if (!inputData.OLSKFlexGrantPublicNumbers.length) {
+			_error('OLSKFlexGrantPublicNumbers', 'OLSKErrorNotFilled');
+		}
+
+		if (!uIsFilled(inputData.OLSKFlexGrantIdentity)) {
+			_error('OLSKFlexGrantIdentity', 'OLSKErrorNotFilled');
+		}
+
+		if (!uIsFilled(inputData.OLSKFlexGrantProject)) {
+			_error('OLSKFlexGrantProject', 'OLSKErrorNotFilled');
+		}
+
+		if (!uIsDate(inputData.OLSKFlexGrantStartDate)) {
+			_error('OLSKFlexGrantStartDate', 'OLSKErrorNotDate');
+		}
+
+		if (!uIsDate(inputData.OLSKFlexGrantEndDate)) {
+			_error('OLSKFlexGrantEndDate', 'OLSKErrorNotDate');
+		}
+
+		if (typeof inputData.OLSKFlexGrantContribution !== 'number') {
+			_error('OLSKFlexGrantContribution', 'OLSKErrorNotNumber');
+		}
+
+		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexGrantProcessor)) {
+			_error('OLSKFlexGrantProcessor', 'OLSKErrorNotAuthType');
+		}
+
+		if (!uIsFilled(inputData.OLSKFlexGrantProcessorReference)) {
+			_error('OLSKFlexGrantProcessorReference', 'OLSKErrorNotFilled');
 		}
 
 		return Object.entries(outputData).length ? outputData : null;
