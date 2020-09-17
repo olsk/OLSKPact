@@ -327,36 +327,13 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 			OLSKFlexPayProcessor: null,
 		})), {
 			OLSKFlexPayProcessor: [
-				'OLSKErrorNotAuthType',
+				'OLSKErrorNotPayProcessor',
 			],
 		});
 	});
 
 	it('returns null', function() {
 		deepEqual(mod.OLSKFlexPayModelErrors(uItem()), null);
-	});
-
-	context('OLSKFlexPayProcessorPayPal', function () {
-
-		const uItemStorage = function (inputData) {
-			return {
-				OLSKFlexPayIdentity: 'alfa',
-				OLSKFlexPayTransaction: 'bravo',
-				OLSKFlexPayProcessor: mod.OLSKFlexPayProcessorPayPal(),
-				OLSKFlexPayMetadata: Object.assign({}, inputData),
-			};
-		};
-
-		it('returns object if OLSKFlexPayMetadata not object', function() {
-			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemStorage(), {
-				OLSKFlexPayMetadata: null,
-			})), {
-				OLSKFlexPayMetadata: [
-					'OLSKErrorNotObject',
-				],
-			});
-		});
-
 	});
 
 });
@@ -478,7 +455,7 @@ describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 			OLSKFlexGrantProcessor: null,
 		})), {
 			OLSKFlexGrantProcessor: [
-				'OLSKErrorNotAuthType',
+				'OLSKErrorNotPayProcessor',
 			],
 		});
 	});

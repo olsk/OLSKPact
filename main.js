@@ -134,17 +134,7 @@ const mod = {
 		}
 
 		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexPayProcessor)) {
-			_error('OLSKFlexPayProcessor', 'OLSKErrorNotAuthType');
-		}
-
-		if (inputData.OLSKFlexPayProcessor === mod.OLSKFlexPayProcessorPayPal()) {
-			const metadata = inputData.OLSKFlexPayMetadata;
-
-			_error('OLSKFlexPayMetadata', (function() {
-				if (typeof metadata !== 'object' || metadata === null) {
-					return 'OLSKErrorNotObject';
-				}
-			})());
+			_error('OLSKFlexPayProcessor', 'OLSKErrorNotPayProcessor');
 		}
 
 		return Object.entries(outputData).length ? outputData : null;
@@ -191,7 +181,7 @@ const mod = {
 		}
 
 		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexGrantProcessor)) {
-			_error('OLSKFlexGrantProcessor', 'OLSKErrorNotAuthType');
+			_error('OLSKFlexGrantProcessor', 'OLSKErrorNotPayProcessor');
 		}
 
 		if (!uIsFilled(inputData.OLSKFlexGrantProcessorReference)) {
