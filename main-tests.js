@@ -268,12 +268,12 @@ describe('OLSKFlexPayProcessors', function test_OLSKFlexPayProcessors() {
 
 describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 
-	const uItem = function () {
-		return Object.assign.apply(null, [{
+	const uItem = function (inputData) {
+		return Object.assign({
 			OLSKFlexPayIdentity: 'alfa',
 			OLSKFlexPayTransaction: 'bravo',
 			OLSKFlexPayProcessor: mod.OLSKFlexPayProcessorStripe(),
-		}].concat(Array.from(arguments)));
+		}, inputData);
 	};
 
 	it('throws if not object', function() {
