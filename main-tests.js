@@ -59,7 +59,7 @@ describe('OLSKFlexAuthIdentityIsStorageAddress', function test_OLSKFlexAuthIdent
 
 });
 
-describe('OLSKFlexAuthModelErrors', function test_OLSKFlexAuthModelErrors() {
+describe('OLSKFlexPayModelErrors', function test_OLSKFlexAuthModelErrors() {
 
 	const uItem = function () {
 		return Object.assign.apply(null, [{
@@ -273,7 +273,7 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 			OLSKFlexPayIdentity: 'alfa',
 			OLSKFlexPayTransaction: 'bravo',
 			OLSKFlexPayProcessor: mod.OLSKFlexPayProcessorStripe(),
-		}, inputData);
+		}, ...arguments);
 	};
 
 	it('throws if not object', function() {
@@ -334,6 +334,53 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 
 	it('returns null', function() {
 		deepEqual(mod.OLSKFlexPayModelErrors(uItem()), null);
+	});
+
+	context('OLSKFlexPayProcessorPayPal', function () {
+
+		const uItemPayPal = function (inputData) {
+			return {
+				OLSKFlexPayProcessor: mod.OLSKFlexPayProcessorPayPal(),
+				OLSKFlexPayMetadata: Object.assign({
+					OLSKFlexPayMetadataProject: 'delta',
+				}, inputData),
+			};
+		};
+
+		it('returns object if OLSKFlexPayMetadata not object', function() {
+			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal(), {
+				OLSKFlexPayMetadata: null,
+			})), {
+				OLSKFlexPayMetadata: [
+					'OLSKErrorNotObject',
+				],
+			});
+		});
+
+		it('returns object if OLSKFlexPayMetadataProject not string', function() {
+			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal({
+				OLSKFlexPayMetadataProject: null,
+			}))), {
+				OLSKFlexPayMetadata: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
+		it('returns object if OLSKFlexPayMetadataProject not filled', function() {
+			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal({
+				OLSKFlexPayMetadataProject: ' ',
+			}))), {
+				OLSKFlexPayMetadata: [
+					'OLSKErrorNotValid',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal())), null);
+		});
+
 	});
 
 });
