@@ -214,6 +214,10 @@ const mod = {
 			_error('OLSKFlexGrantContribution', 'OLSKErrorNotNumber');
 		}
 
+		if (!mod.OLSKFlexGrantFrequencyOptions().includes(inputData.OLSKFlexGrantFrequencyOption)) {
+			_error('OLSKFlexGrantFrequencyOption', 'OLSKErrorNotValid');
+		}
+
 		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexGrantProcessor)) {
 			_error('OLSKFlexGrantProcessor', 'OLSKErrorNotValid');
 		}

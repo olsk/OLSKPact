@@ -431,6 +431,7 @@ describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 			OLSKFlexGrantStartDate: new Date(),
 			OLSKFlexGrantEndDate: new Date(),
 			OLSKFlexGrantContribution: 1,
+			OLSKFlexGrantFrequencyOption: mod.OLSKFlexGrantFrequencyOptionYearly(),
 			OLSKFlexGrantProcessor: mod.OLSKFlexPayProcessorStripe(),
 			OLSKFlexGrantProcessorReference: 'delta',
 			OLSKFlexGrantActive: true,
@@ -529,6 +530,16 @@ describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 		})), {
 			OLSKFlexGrantContribution: [
 				'OLSKErrorNotNumber',
+			],
+		});
+	});
+
+	it('returns object if OLSKFlexGrantFrequencyOption not valid', function() {
+		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
+			OLSKFlexGrantFrequencyOption: null,
+		})), {
+			OLSKFlexGrantFrequencyOption: [
+				'OLSKErrorNotValid',
 			],
 		});
 	});
