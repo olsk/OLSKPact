@@ -327,7 +327,7 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 			OLSKFlexPayProcessor: null,
 		})), {
 			OLSKFlexPayProcessor: [
-				'OLSKErrorNotPayProcessor',
+				'OLSKErrorNotValid',
 			],
 		});
 	});
@@ -538,7 +538,7 @@ describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 			OLSKFlexGrantProcessor: null,
 		})), {
 			OLSKFlexGrantProcessor: [
-				'OLSKErrorNotPayProcessor',
+				'OLSKErrorNotValid',
 			],
 		});
 	});

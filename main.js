@@ -134,7 +134,7 @@ const mod = {
 		}
 
 		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexPayProcessor)) {
-			_error('OLSKFlexPayProcessor', 'OLSKErrorNotPayProcessor');
+			_error('OLSKFlexPayProcessor', 'OLSKErrorNotValid');
 		}
 
 		if (inputData.OLSKFlexPayProcessor === mod.OLSKFlexPayProcessorPayPal()) {
@@ -215,7 +215,7 @@ const mod = {
 		}
 
 		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexGrantProcessor)) {
-			_error('OLSKFlexGrantProcessor', 'OLSKErrorNotPayProcessor');
+			_error('OLSKFlexGrantProcessor', 'OLSKErrorNotValid');
 		}
 
 		if (!uIsFilled(inputData.OLSKFlexGrantProcessorReference)) {
