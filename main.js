@@ -154,6 +154,26 @@ const mod = {
 		return Object.entries(outputData).length ? outputData : null;
 	},
 
+	OLSKFlexGrantFrequencyOptionYearly () {
+		return 'kOLSKFlexGrantFrequencyOptionYearly';
+	},
+
+	OLSKFlexGrantFrequencyOptionMonthly () {
+		return 'kOLSKFlexGrantFrequencyOptionMonthly';
+	},
+
+	OLSKFlexGrantFrequencyOptionOnce () {
+		return 'kOLSKFlexGrantFrequencyOptionOnce';
+	},
+
+	OLSKFlexGrantFrequencyOptions () {
+		return [
+			mod.OLSKFlexGrantFrequencyOptionYearly(),
+			mod.OLSKFlexGrantFrequencyOptionMonthly(),
+			mod.OLSKFlexGrantFrequencyOptionOnce(),
+		];
+	},
+
 	OLSKFlexGrantModelErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('OLSKErrorInputNotValid');

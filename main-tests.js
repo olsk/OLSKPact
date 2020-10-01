@@ -385,6 +385,42 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 
 });
 
+describe('OLSKFlexGrantFrequencyOptionYearly', function test_OLSKFlexGrantFrequencyOptionYearly() {
+
+	it('returns string', function () {
+		deepEqual(mod.OLSKFlexGrantFrequencyOptionYearly(), 'kOLSKFlexGrantFrequencyOptionYearly');
+	});
+
+});
+
+describe('OLSKFlexGrantFrequencyOptionMonthly', function test_OLSKFlexGrantFrequencyOptionMonthly() {
+
+	it('returns string', function () {
+		deepEqual(mod.OLSKFlexGrantFrequencyOptionMonthly(), 'kOLSKFlexGrantFrequencyOptionMonthly');
+	});
+
+});
+
+describe('OLSKFlexGrantFrequencyOptionOnce', function test_OLSKFlexGrantFrequencyOptionOnce() {
+
+	it('returns string', function () {
+		deepEqual(mod.OLSKFlexGrantFrequencyOptionOnce(), 'kOLSKFlexGrantFrequencyOptionOnce');
+	});
+
+});
+
+describe('OLSKFlexGrantFrequencyOptions', function test_OLSKFlexGrantFrequencyOptions() {
+
+	it('returns array', function () {
+		deepEqual(mod.OLSKFlexGrantFrequencyOptions(), [
+			mod.OLSKFlexGrantFrequencyOptionYearly(),
+			mod.OLSKFlexGrantFrequencyOptionMonthly(),
+			mod.OLSKFlexGrantFrequencyOptionOnce(),
+			]);
+	});
+
+});
+
 describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
 
 	const uItem = function (inputData = {}) {
