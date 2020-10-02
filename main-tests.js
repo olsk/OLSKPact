@@ -338,6 +338,43 @@ describe('OLSKPactPayModelErrors', function test_OLSKPactPayModelErrors() {
 
 });
 
+describe('OLSKPactMetadataDecompress', function test_OLSKPactMetadataDecompress() {
+
+	it('throws if not string', function () {
+		throws(function () {
+			mod.OLSKPactMetadataDecompress(null);
+		}, /RCSErrorInputNotValid/);
+	});
+
+	it('throws if fails JSON.parse', function () {
+		throws(function () {
+			mod.OLSKPactMetadataDecompress('alfa');
+		}, /RCSErrorInputFailedJSONParse/);
+	});
+
+	it('returns object', function () {
+		deepEqual(mod.OLSKPactMetadataDecompress('{}'), {
+			DonateIntentIdentity: 'UNSET_GRANT_IDENTITY',
+			DonateIntentProject: 'UNSET_GRANT_PROJECT',
+		});
+	});
+
+	it('maps DonateIntentIdentity', function () {
+		deepEqual(mod.OLSKPactMetadataDecompress('{"a":"alfa"}'), {
+			DonateIntentIdentity: 'alfa',
+			DonateIntentProject: 'UNSET_GRANT_PROJECT',
+		});
+	});
+
+	it('maps DonateIntentProject', function () {
+		deepEqual(mod.OLSKPactMetadataDecompress('{"b":"alfa"}'), {
+			DonateIntentIdentity: 'UNSET_GRANT_IDENTITY',
+			DonateIntentProject: 'alfa',
+		});
+	});
+
+});
+
 describe('OLSKPactGrantFrequencyOptionYearly', function test_OLSKPactGrantFrequencyOptionYearly() {
 
 	it('returns string', function () {

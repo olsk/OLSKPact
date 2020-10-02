@@ -140,6 +140,25 @@ const mod = {
 		return Object.entries(outputData).length ? outputData : null;
 	},
 
+	OLSKPactMetadataDecompress (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('RCSErrorInputNotValid');
+		}
+
+		const result = {};
+
+		try {
+			Object.assign(result, JSON.parse(inputData));
+		} catch {
+			throw new Error('RCSErrorInputFailedJSONParse');
+		}
+
+		return {
+			DonateIntentIdentity: result.a || 'UNSET_GRANT_IDENTITY',
+			DonateIntentProject: result.b || 'UNSET_GRANT_PROJECT',
+		};
+	},
+
 	OLSKPactGrantFrequencyOptionYearly () {
 		return 'kOLSKPactGrantFrequencyOptionYearly';
 	},
