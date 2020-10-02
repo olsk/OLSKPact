@@ -343,13 +343,13 @@ describe('OLSKPactMetadataDecompress', function test_OLSKPactMetadataDecompress(
 	it('throws if not string', function () {
 		throws(function () {
 			mod.OLSKPactMetadataDecompress(null);
-		}, /RCSErrorInputNotValid/);
+		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if fails JSON.parse', function () {
 		throws(function () {
 			mod.OLSKPactMetadataDecompress('alfa');
-		}, /RCSErrorInputFailedJSONParse/);
+		}, /OLSKErrorInputFailedJSONParse/);
 	});
 
 	it('returns object', function () {

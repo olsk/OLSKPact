@@ -142,7 +142,7 @@ const mod = {
 
 	OLSKPactMetadataDecompress (inputData) {
 		if (typeof inputData !== 'string') {
-			throw new Error('RCSErrorInputNotValid');
+			throw new Error('OLSKErrorInputNotValid');
 		}
 
 		const result = {};
@@ -150,7 +150,7 @@ const mod = {
 		try {
 			Object.assign(result, JSON.parse(inputData));
 		} catch {
-			throw new Error('RCSErrorInputFailedJSONParse');
+			throw new Error('OLSKErrorInputFailedJSONParse');
 		}
 
 		return {
