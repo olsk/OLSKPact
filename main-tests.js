@@ -2,212 +2,212 @@ const { throws, deepEqual } = require('assert');
 
 const mod = require('./main.js');
 
-describe('OLSKFlexAuthTypeEmail', function test_OLSKFlexAuthTypeEmail() {
+describe('OLSKPactAuthTypeEmail', function test_OLSKPactAuthTypeEmail() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKFlexAuthTypeEmail(), 'OLSK_FLEX_AUTH_TYPE_EMAIL');
+		deepEqual(mod.OLSKPactAuthTypeEmail(), 'OLSK_FLEX_AUTH_TYPE_EMAIL');
 	});
 
 });
 
-describe('OLSKFlexAuthTypeStorage', function test_OLSKFlexAuthTypeStorage() {
+describe('OLSKPactAuthTypeStorage', function test_OLSKPactAuthTypeStorage() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKFlexAuthTypeStorage(), 'OLSK_FLEX_AUTH_TYPE_STORAGE');
+		deepEqual(mod.OLSKPactAuthTypeStorage(), 'OLSK_FLEX_AUTH_TYPE_STORAGE');
 	});
 
 });
 
-describe('OLSKFlexAuthTypes', function test_OLSKFlexAuthTypes() {
+describe('OLSKPactAuthTypes', function test_OLSKPactAuthTypes() {
 
 	it('returns array', function () {
-		deepEqual(mod.OLSKFlexAuthTypes(), [
-			mod.OLSKFlexAuthTypeEmail(),
-			mod.OLSKFlexAuthTypeStorage(),
+		deepEqual(mod.OLSKPactAuthTypes(), [
+			mod.OLSKPactAuthTypeEmail(),
+			mod.OLSKPactAuthTypeStorage(),
 			]);
 	});
 
 });
 
-describe('OLSKFlexAuthIdentityIsStorageAddress', function test_OLSKFlexAuthIdentityIsStorageAddress() {
+describe('OLSKPactAuthIdentityIsStorageAddress', function test_OLSKPactAuthIdentityIsStorageAddress() {
 
 	it('throws if not string', function () {
 		throws(function () {
-			mod.OLSKFlexAuthIdentityIsStorageAddress(null)
+			mod.OLSKPactAuthIdentityIsStorageAddress(null)
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('returns false if no @', function() {
-		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfacharlie.delta'), false);
+		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfacharlie.delta'), false);
 	});
 
 	it('returns false if no .', function() {
-		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa@charliedelta'), false);
+		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa@charliedelta'), false);
 	});
 
 	it('returns false if space', function() {
-		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa @charlie.delta'), false);
+		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa @charlie.delta'), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa@charlie.delta'), true);
+		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa@charlie.delta'), true);
 	});
 
 	it('returns true if subdomain', function() {
-		deepEqual(mod.OLSKFlexAuthIdentityIsStorageAddress('alfa@charlie.delta.echo'), true);
+		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa@charlie.delta.echo'), true);
 	});
 
 });
 
-describe('OLSKFlexPayModelErrors', function test_OLSKFlexAuthModelErrors() {
+describe('OLSKPactPayModelErrors', function test_OLSKPactAuthModelErrors() {
 
 	const uItem = function () {
 		return Object.assign.apply(null, [{
-			OLSKFlexAuthType: mod.OLSKFlexAuthTypeEmail(),
-			OLSKFlexAuthIdentity: 'alfa@bravo.charlie',
-			OLSKFlexAuthProof: 'delta',
+			OLSKPactAuthType: mod.OLSKPactAuthTypeEmail(),
+			OLSKPactAuthIdentity: 'alfa@bravo.charlie',
+			OLSKPactAuthProof: 'delta',
 		}].concat(Array.from(arguments)));
 	};
 
 	it('throws if not object', function() {
 		throws(function() {
-			mod.OLSKFlexAuthModelErrors(null);
+			mod.OLSKPactAuthModelErrors(null);
 		}, /OLSKErrorInputNotValid/);
 	});
 
-	it('returns object if OLSKFlexAuthType not valid', function() {
-		deepEqual(mod.OLSKFlexAuthModelErrors(uItem({
-			OLSKFlexAuthType: null,
+	it('returns object if OLSKPactAuthType not valid', function() {
+		deepEqual(mod.OLSKPactAuthModelErrors(uItem({
+			OLSKPactAuthType: null,
 		})), {
-			OLSKFlexAuthType: [
+			OLSKPactAuthType: [
 				'OLSKErrorNotAuthType',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexAuthIdentity not string', function() {
-		deepEqual(mod.OLSKFlexAuthModelErrors(uItem({
-			OLSKFlexAuthIdentity: null,
+	it('returns object if OLSKPactAuthIdentity not string', function() {
+		deepEqual(mod.OLSKPactAuthModelErrors(uItem({
+			OLSKPactAuthIdentity: null,
 		})), {
-			OLSKFlexAuthIdentity: [
+			OLSKPactAuthIdentity: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexAuthIdentity not filled', function() {
-		deepEqual(mod.OLSKFlexAuthModelErrors(uItem({
-			OLSKFlexAuthIdentity: ' ',
+	it('returns object if OLSKPactAuthIdentity not filled', function() {
+		deepEqual(mod.OLSKPactAuthModelErrors(uItem({
+			OLSKPactAuthIdentity: ' ',
 		})), {
-			OLSKFlexAuthIdentity: [
+			OLSKPactAuthIdentity: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexAuthProof not string', function() {
-		deepEqual(mod.OLSKFlexAuthModelErrors(uItem({
-			OLSKFlexAuthProof: null,
+	it('returns object if OLSKPactAuthProof not string', function() {
+		deepEqual(mod.OLSKPactAuthModelErrors(uItem({
+			OLSKPactAuthProof: null,
 		})), {
-			OLSKFlexAuthProof: [
+			OLSKPactAuthProof: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexAuthProof not filled', function() {
-		deepEqual(mod.OLSKFlexAuthModelErrors(uItem({
-			OLSKFlexAuthProof: ' ',
+	it('returns object if OLSKPactAuthProof not filled', function() {
+		deepEqual(mod.OLSKPactAuthModelErrors(uItem({
+			OLSKPactAuthProof: ' ',
 		})), {
-			OLSKFlexAuthProof: [
+			OLSKPactAuthProof: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.OLSKFlexAuthModelErrors(uItem()), null);
+		deepEqual(mod.OLSKPactAuthModelErrors(uItem()), null);
 	});
 
-	context('OLSKFlexAuthTypeStorage', function () {
+	context('OLSKPactAuthTypeStorage', function () {
 
 		const uItemStorage = function (inputData) {
 			return {
-				OLSKFlexAuthType: mod.OLSKFlexAuthTypeStorage(),
-				OLSKFlexAuthIdentity: 'alfa@bravo.charlie',
-				OLSKFlexAuthProof: 'bravo',
-				OLSKFlexAuthMetadata: Object.assign({
-					OLSKFlexAuthMetadataModuleName: 'charlie',
-					OLSKFlexAuthMetadataFolderPath: 'delta/',
+				OLSKPactAuthType: mod.OLSKPactAuthTypeStorage(),
+				OLSKPactAuthIdentity: 'alfa@bravo.charlie',
+				OLSKPactAuthProof: 'bravo',
+				OLSKPactAuthMetadata: Object.assign({
+					OLSKPactAuthMetadataModuleName: 'charlie',
+					OLSKPactAuthMetadataFolderPath: 'delta/',
 				}, inputData),
 			};
 		};
 
-		it('returns object if OLSKFlexAuthIdentity not valid', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItem(uItemStorage(), {
-				OLSKFlexAuthIdentity: 'alfabravo.charlie',
+		it('returns object if OLSKPactAuthIdentity not valid', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItem(uItemStorage(), {
+				OLSKPactAuthIdentity: 'alfabravo.charlie',
 			})), {
-				OLSKFlexAuthIdentity: [
+				OLSKPactAuthIdentity: [
 					'OLSKErrorNotValid',
 				],
 			});
 		});
 
-		it('returns object if OLSKFlexAuthMetadata not object', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItem(uItemStorage(), {
-				OLSKFlexAuthMetadata: null,
+		it('returns object if OLSKPactAuthMetadata not object', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItem(uItemStorage(), {
+				OLSKPactAuthMetadata: null,
 			})), {
-				OLSKFlexAuthMetadata: [
+				OLSKPactAuthMetadata: [
 					'OLSKErrorNotObject',
 				],
 			});
 		});
 
-		it('returns object if OLSKFlexAuthMetadataModuleName not string', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
-				OLSKFlexAuthMetadataModuleName: null,
+		it('returns object if OLSKPactAuthMetadataModuleName not string', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItemStorage({
+				OLSKPactAuthMetadataModuleName: null,
 			})), {
-				OLSKFlexAuthMetadata: [
+				OLSKPactAuthMetadata: [
 					'OLSKErrorNotValid',
 				],
 			});
 		});
 
-		it('returns object if OLSKFlexAuthMetadataModuleName not filled', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
-				OLSKFlexAuthMetadataModuleName: ' ',
+		it('returns object if OLSKPactAuthMetadataModuleName not filled', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItemStorage({
+				OLSKPactAuthMetadataModuleName: ' ',
 			})), {
-				OLSKFlexAuthMetadata: [
+				OLSKPactAuthMetadata: [
 					'OLSKErrorNotValid',
 				],
 			});
 		});
 
-		it('returns object if OLSKFlexAuthMetadataFolderPath not string', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
-				OLSKFlexAuthMetadataFolderPath: null,
+		it('returns object if OLSKPactAuthMetadataFolderPath not string', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItemStorage({
+				OLSKPactAuthMetadataFolderPath: null,
 			})), {
-				OLSKFlexAuthMetadata: [
+				OLSKPactAuthMetadata: [
 					'OLSKErrorNotValid',
 				],
 			});
 		});
 
-		it('returns object if OLSKFlexAuthMetadataFolderPath not filled', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
-				OLSKFlexAuthMetadataFolderPath: '/',
+		it('returns object if OLSKPactAuthMetadataFolderPath not filled', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItemStorage({
+				OLSKPactAuthMetadataFolderPath: '/',
 			})), {
-				OLSKFlexAuthMetadata: [
+				OLSKPactAuthMetadata: [
 					'OLSKErrorNotValid',
 				],
 			});
 		});
 
-		it('returns object if OLSKFlexAuthMetadataFolderPath not terminated', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItemStorage({
-				OLSKFlexAuthMetadataFolderPath: 'alfa',
+		it('returns object if OLSKPactAuthMetadataFolderPath not terminated', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItemStorage({
+				OLSKPactAuthMetadataFolderPath: 'alfa',
 			})), {
-				OLSKFlexAuthMetadata: [
+				OLSKPactAuthMetadata: [
 					'OLSKErrorNotValid',
 				],
 			});
@@ -215,21 +215,21 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexAuthModelErrors() {
 	
 	});
 
-	context('OLSKFlexAuthTypeEmail', function () {
+	context('OLSKPactAuthTypeEmail', function () {
 
 		const uItemEmail = function (inputData) {
 			return {
-				OLSKFlexAuthType: mod.OLSKFlexAuthTypeEmail(),
-				OLSKFlexAuthIdentity: 'alfa@bravo.charlie',
-				OLSKFlexAuthProof: 'bravo',
+				OLSKPactAuthType: mod.OLSKPactAuthTypeEmail(),
+				OLSKPactAuthIdentity: 'alfa@bravo.charlie',
+				OLSKPactAuthProof: 'bravo',
 			};
 		};
 
-		it('returns object if OLSKFlexAuthIdentity not valid', function() {
-			deepEqual(mod.OLSKFlexAuthModelErrors(uItem(uItemEmail(), {
-				OLSKFlexAuthIdentity: 'alfabravo.charlie',
+		it('returns object if OLSKPactAuthIdentity not valid', function() {
+			deepEqual(mod.OLSKPactAuthModelErrors(uItem(uItemEmail(), {
+				OLSKPactAuthIdentity: 'alfabravo.charlie',
 			})), {
-				OLSKFlexAuthIdentity: [
+				OLSKPactAuthIdentity: [
 					'OLSKErrorNotValid',
 				],
 			});
@@ -239,306 +239,306 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexAuthModelErrors() {
 
 });
 
-describe('OLSKFlexPayProcessorStripe', function test_OLSKFlexPayProcessorStripe() {
+describe('OLSKPactPayProcessorStripe', function test_OLSKPactPayProcessorStripe() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKFlexPayProcessorStripe(), 'OLSK_FLEX_PAY_PROCESSOR_STRIPE');
+		deepEqual(mod.OLSKPactPayProcessorStripe(), 'OLSK_FLEX_PAY_PROCESSOR_STRIPE');
 	});
 
 });
 
-describe('OLSKFlexPayProcessorPayPal', function test_OLSKFlexPayProcessorPayPal() {
+describe('OLSKPactPayProcessorPayPal', function test_OLSKPactPayProcessorPayPal() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKFlexPayProcessorPayPal(), 'OLSK_FLEX_PAY_PROCESSOR_PAYPAL');
+		deepEqual(mod.OLSKPactPayProcessorPayPal(), 'OLSK_FLEX_PAY_PROCESSOR_PAYPAL');
 	});
 
 });
 
-describe('OLSKFlexPayProcessors', function test_OLSKFlexPayProcessors() {
+describe('OLSKPactPayProcessors', function test_OLSKPactPayProcessors() {
 
 	it('returns array', function () {
-		deepEqual(mod.OLSKFlexPayProcessors(), [
-			mod.OLSKFlexPayProcessorStripe(),
-			mod.OLSKFlexPayProcessorPayPal(),
+		deepEqual(mod.OLSKPactPayProcessors(), [
+			mod.OLSKPactPayProcessorStripe(),
+			mod.OLSKPactPayProcessorPayPal(),
 			]);
 	});
 
 });
 
-describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
+describe('OLSKPactPayModelErrors', function test_OLSKPactPayModelErrors() {
 
 	const uItem = function (inputData) {
 		return Object.assign({
-			OLSKFlexPayIdentity: 'alfa',
-			OLSKFlexPayTransaction: 'bravo',
-			OLSKFlexPayProcessor: mod.OLSKFlexPayProcessorStripe(),
+			OLSKPactPayIdentity: 'alfa',
+			OLSKPactPayTransaction: 'bravo',
+			OLSKPactPayProcessor: mod.OLSKPactPayProcessorStripe(),
 		}, ...arguments);
 	};
 
 	it('throws if not object', function() {
 		throws(function() {
-			mod.OLSKFlexPayModelErrors(null);
+			mod.OLSKPactPayModelErrors(null);
 		}, /OLSKErrorInputNotValid/);
 	});
 
-	it('returns object if OLSKFlexPayIdentity not string', function() {
-		deepEqual(mod.OLSKFlexPayModelErrors(uItem({
-			OLSKFlexPayIdentity: null,
+	it('returns object if OLSKPactPayIdentity not string', function() {
+		deepEqual(mod.OLSKPactPayModelErrors(uItem({
+			OLSKPactPayIdentity: null,
 		})), {
-			OLSKFlexPayIdentity: [
+			OLSKPactPayIdentity: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexPayIdentity not filled', function() {
-		deepEqual(mod.OLSKFlexPayModelErrors(uItem({
-			OLSKFlexPayIdentity: ' ',
+	it('returns object if OLSKPactPayIdentity not filled', function() {
+		deepEqual(mod.OLSKPactPayModelErrors(uItem({
+			OLSKPactPayIdentity: ' ',
 		})), {
-			OLSKFlexPayIdentity: [
+			OLSKPactPayIdentity: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexPayTransaction not string', function() {
-		deepEqual(mod.OLSKFlexPayModelErrors(uItem({
-			OLSKFlexPayTransaction: null,
+	it('returns object if OLSKPactPayTransaction not string', function() {
+		deepEqual(mod.OLSKPactPayModelErrors(uItem({
+			OLSKPactPayTransaction: null,
 		})), {
-			OLSKFlexPayTransaction: [
+			OLSKPactPayTransaction: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexPayTransaction not filled', function() {
-		deepEqual(mod.OLSKFlexPayModelErrors(uItem({
-			OLSKFlexPayTransaction: ' ',
+	it('returns object if OLSKPactPayTransaction not filled', function() {
+		deepEqual(mod.OLSKPactPayModelErrors(uItem({
+			OLSKPactPayTransaction: ' ',
 		})), {
-			OLSKFlexPayTransaction: [
+			OLSKPactPayTransaction: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexPayProcessor not valid', function() {
-		deepEqual(mod.OLSKFlexPayModelErrors(uItem({
-			OLSKFlexPayProcessor: null,
+	it('returns object if OLSKPactPayProcessor not valid', function() {
+		deepEqual(mod.OLSKPactPayModelErrors(uItem({
+			OLSKPactPayProcessor: null,
 		})), {
-			OLSKFlexPayProcessor: [
+			OLSKPactPayProcessor: [
 				'OLSKErrorNotValid',
 			],
 		});
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.OLSKFlexPayModelErrors(uItem()), null);
+		deepEqual(mod.OLSKPactPayModelErrors(uItem()), null);
 	});
 
 });
 
-describe('OLSKFlexGrantFrequencyOptionYearly', function test_OLSKFlexGrantFrequencyOptionYearly() {
+describe('OLSKPactGrantFrequencyOptionYearly', function test_OLSKPactGrantFrequencyOptionYearly() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKFlexGrantFrequencyOptionYearly(), 'kOLSKFlexGrantFrequencyOptionYearly');
+		deepEqual(mod.OLSKPactGrantFrequencyOptionYearly(), 'kOLSKPactGrantFrequencyOptionYearly');
 	});
 
 });
 
-describe('OLSKFlexGrantFrequencyOptionMonthly', function test_OLSKFlexGrantFrequencyOptionMonthly() {
+describe('OLSKPactGrantFrequencyOptionMonthly', function test_OLSKPactGrantFrequencyOptionMonthly() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKFlexGrantFrequencyOptionMonthly(), 'kOLSKFlexGrantFrequencyOptionMonthly');
+		deepEqual(mod.OLSKPactGrantFrequencyOptionMonthly(), 'kOLSKPactGrantFrequencyOptionMonthly');
 	});
 
 });
 
-describe('OLSKFlexGrantFrequencyOptionOnce', function test_OLSKFlexGrantFrequencyOptionOnce() {
+describe('OLSKPactGrantFrequencyOptionOnce', function test_OLSKPactGrantFrequencyOptionOnce() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKFlexGrantFrequencyOptionOnce(), 'kOLSKFlexGrantFrequencyOptionOnce');
+		deepEqual(mod.OLSKPactGrantFrequencyOptionOnce(), 'kOLSKPactGrantFrequencyOptionOnce');
 	});
 
 });
 
-describe('OLSKFlexGrantFrequencyOptions', function test_OLSKFlexGrantFrequencyOptions() {
+describe('OLSKPactGrantFrequencyOptions', function test_OLSKPactGrantFrequencyOptions() {
 
 	it('returns array', function () {
-		deepEqual(mod.OLSKFlexGrantFrequencyOptions(), [
-			mod.OLSKFlexGrantFrequencyOptionYearly(),
-			mod.OLSKFlexGrantFrequencyOptionMonthly(),
-			mod.OLSKFlexGrantFrequencyOptionOnce(),
+		deepEqual(mod.OLSKPactGrantFrequencyOptions(), [
+			mod.OLSKPactGrantFrequencyOptionYearly(),
+			mod.OLSKPactGrantFrequencyOptionMonthly(),
+			mod.OLSKPactGrantFrequencyOptionOnce(),
 			]);
 	});
 
 });
 
-describe('OLSKFlexGrantModelErrors', function test_OLSKFlexGrantModelErrors() {
+describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 
 	const uItem = function (inputData = {}) {
 		return Object.assign({
-			OLSKFlexGrantPublicNumbers: ['alfa'],
-			OLSKFlexGrantIdentity: 'bravo',
-			OLSKFlexGrantProject: 'charlie',
-			OLSKFlexGrantStartDate: new Date(),
-			OLSKFlexGrantEndDate: new Date(),
-			OLSKFlexGrantContribution: 1,
-			OLSKFlexGrantFrequencyOption: mod.OLSKFlexGrantFrequencyOptionYearly(),
-			OLSKFlexGrantProcessor: mod.OLSKFlexPayProcessorStripe(),
-			OLSKFlexGrantProcessorReference: 'delta',
-			OLSKFlexGrantActive: true,
+			OLSKPactGrantPublicNumbers: ['alfa'],
+			OLSKPactGrantIdentity: 'bravo',
+			OLSKPactGrantProject: 'charlie',
+			OLSKPactGrantStartDate: new Date(),
+			OLSKPactGrantEndDate: new Date(),
+			OLSKPactGrantContribution: 1,
+			OLSKPactGrantFrequencyOption: mod.OLSKPactGrantFrequencyOptionYearly(),
+			OLSKPactGrantProcessor: mod.OLSKPactPayProcessorStripe(),
+			OLSKPactGrantProcessorReference: 'delta',
+			OLSKPactGrantActive: true,
 		}, inputData);
 	};
 
 	it('throws if not object', function() {
 		throws(function() {
-			mod.OLSKFlexGrantModelErrors(null);
+			mod.OLSKPactGrantModelErrors(null);
 		}, /OLSKErrorInputNotValid/);
 	});
 
-	it('returns object if OLSKFlexGrantPublicNumbers not array', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantPublicNumbers: null,
+	it('returns object if OLSKPactGrantPublicNumbers not array', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantPublicNumbers: null,
 		})), {
-			OLSKFlexGrantPublicNumbers: [
+			OLSKPactGrantPublicNumbers: [
 				'OLSKErrorNotArray',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantPublicNumbers not filled', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantPublicNumbers: [],
+	it('returns object if OLSKPactGrantPublicNumbers not filled', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantPublicNumbers: [],
 		})), {
-			OLSKFlexGrantPublicNumbers: [
+			OLSKPactGrantPublicNumbers: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantIdentity not string', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantIdentity: null,
+	it('returns object if OLSKPactGrantIdentity not string', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantIdentity: null,
 		})), {
-			OLSKFlexGrantIdentity: [
+			OLSKPactGrantIdentity: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantIdentity not filled', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantIdentity: ' ',
+	it('returns object if OLSKPactGrantIdentity not filled', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantIdentity: ' ',
 		})), {
-			OLSKFlexGrantIdentity: [
+			OLSKPactGrantIdentity: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantProject not string', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantProject: null,
+	it('returns object if OLSKPactGrantProject not string', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantProject: null,
 		})), {
-			OLSKFlexGrantProject: [
+			OLSKPactGrantProject: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantProject not filled', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantProject: ' ',
+	it('returns object if OLSKPactGrantProject not filled', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantProject: ' ',
 		})), {
-			OLSKFlexGrantProject: [
+			OLSKPactGrantProject: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantStartDate not date', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantStartDate: new Date('alfa'),
+	it('returns object if OLSKPactGrantStartDate not date', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantStartDate: new Date('alfa'),
 		})), {
-			OLSKFlexGrantStartDate: [
+			OLSKPactGrantStartDate: [
 				'OLSKErrorNotDate',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantEndDate not date', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantEndDate: new Date('alfa'),
+	it('returns object if OLSKPactGrantEndDate not date', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantEndDate: new Date('alfa'),
 		})), {
-			OLSKFlexGrantEndDate: [
+			OLSKPactGrantEndDate: [
 				'OLSKErrorNotDate',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantContribution not number', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantContribution: '1',
+	it('returns object if OLSKPactGrantContribution not number', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantContribution: '1',
 		})), {
-			OLSKFlexGrantContribution: [
+			OLSKPactGrantContribution: [
 				'OLSKErrorNotNumber',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantFrequencyOption not valid', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantFrequencyOption: null,
+	it('returns object if OLSKPactGrantFrequencyOption not valid', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantFrequencyOption: null,
 		})), {
-			OLSKFlexGrantFrequencyOption: [
+			OLSKPactGrantFrequencyOption: [
 				'OLSKErrorNotValid',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantProcessor not valid', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantProcessor: null,
+	it('returns object if OLSKPactGrantProcessor not valid', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantProcessor: null,
 		})), {
-			OLSKFlexGrantProcessor: [
+			OLSKPactGrantProcessor: [
 				'OLSKErrorNotValid',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantProcessorReference not string', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantProcessorReference: null,
+	it('returns object if OLSKPactGrantProcessorReference not string', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantProcessorReference: null,
 		})), {
-			OLSKFlexGrantProcessorReference: [
+			OLSKPactGrantProcessorReference: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantProcessorReference not filled', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantProcessorReference: ' ',
+	it('returns object if OLSKPactGrantProcessorReference not filled', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantProcessorReference: ' ',
 		})), {
-			OLSKFlexGrantProcessorReference: [
+			OLSKPactGrantProcessorReference: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKFlexGrantActive not boolean', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem({
-			OLSKFlexGrantActive: 'true',
+	it('returns object if OLSKPactGrantActive not boolean', function() {
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+			OLSKPactGrantActive: 'true',
 		})), {
-			OLSKFlexGrantActive: [
+			OLSKPactGrantActive: [
 				'OLSKErrorNotBoolean',
 			],
 		});
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.OLSKFlexGrantModelErrors(uItem()), null);
+		deepEqual(mod.OLSKPactGrantModelErrors(uItem()), null);
 	});
 
 });

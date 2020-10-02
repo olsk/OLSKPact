@@ -8,22 +8,22 @@ const uIsDate = function (inputData) {
 
 const mod = {
 
-	OLSKFlexAuthTypeEmail () {
+	OLSKPactAuthTypeEmail () {
 		return 'OLSK_FLEX_AUTH_TYPE_EMAIL';
 	},
 
-	OLSKFlexAuthTypeStorage () {
+	OLSKPactAuthTypeStorage () {
 		return 'OLSK_FLEX_AUTH_TYPE_STORAGE';
 	},
 
-	OLSKFlexAuthTypes () {
+	OLSKPactAuthTypes () {
 		return [
-			mod.OLSKFlexAuthTypeEmail(),
-			mod.OLSKFlexAuthTypeStorage(),
+			mod.OLSKPactAuthTypeEmail(),
+			mod.OLSKPactAuthTypeStorage(),
 		];
 	},
 
-	OLSKFlexAuthIdentityIsStorageAddress (inputData) {
+	OLSKPactAuthIdentityIsStorageAddress (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('OLSKErrorInputNotValid');
 		}
@@ -31,7 +31,7 @@ const mod = {
 		return !!inputData.match(/\w+\@\w+\.\w+/);
 	},
 
-	OLSKFlexAuthModelErrors (inputData) {
+	OLSKPactAuthModelErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('OLSKErrorInputNotValid');
 		}
@@ -45,73 +45,73 @@ const mod = {
 			outputData[param1] = (outputData[param1] || []).concat(param2);
 		};
 
-		if (!mod.OLSKFlexAuthTypes().includes(inputData.OLSKFlexAuthType)) {
-			_error('OLSKFlexAuthType', 'OLSKErrorNotAuthType');
+		if (!mod.OLSKPactAuthTypes().includes(inputData.OLSKPactAuthType)) {
+			_error('OLSKPactAuthType', 'OLSKErrorNotAuthType');
 		}
 
-		if (!uIsFilled(inputData.OLSKFlexAuthIdentity)) {
-			_error('OLSKFlexAuthIdentity', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactAuthIdentity)) {
+			_error('OLSKPactAuthIdentity', 'OLSKErrorNotFilled');
 		}
 
-		if (!uIsFilled(inputData.OLSKFlexAuthProof)) {
-			_error('OLSKFlexAuthProof', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactAuthProof)) {
+			_error('OLSKPactAuthProof', 'OLSKErrorNotFilled');
 		}
 
-		if (inputData.OLSKFlexAuthType === mod.OLSKFlexAuthTypeStorage()) {
-			if (!mod.OLSKFlexAuthIdentityIsStorageAddress(inputData.OLSKFlexAuthIdentity)) {
-				_error('OLSKFlexAuthIdentity', 'OLSKErrorNotValid');
+		if (inputData.OLSKPactAuthType === mod.OLSKPactAuthTypeStorage()) {
+			if (!mod.OLSKPactAuthIdentityIsStorageAddress(inputData.OLSKPactAuthIdentity)) {
+				_error('OLSKPactAuthIdentity', 'OLSKErrorNotValid');
 			}
 
-			const metadata = inputData.OLSKFlexAuthMetadata;
+			const metadata = inputData.OLSKPactAuthMetadata;
 
-			_error('OLSKFlexAuthMetadata', (function() {
+			_error('OLSKPactAuthMetadata', (function() {
 				if (typeof metadata !== 'object' || metadata === null) {
 					return 'OLSKErrorNotObject';
 				}
 
-				if (!uIsFilled(metadata.OLSKFlexAuthMetadataModuleName)) {
+				if (!uIsFilled(metadata.OLSKPactAuthMetadataModuleName)) {
 					return 'OLSKErrorNotValid';
 				}
 
-				if (!uIsFilled(metadata.OLSKFlexAuthMetadataFolderPath)) {
+				if (!uIsFilled(metadata.OLSKPactAuthMetadataFolderPath)) {
 					return 'OLSKErrorNotValid';
 				}
 
-				if (!metadata.OLSKFlexAuthMetadataFolderPath.slice(0, -1).trim()) {
+				if (!metadata.OLSKPactAuthMetadataFolderPath.slice(0, -1).trim()) {
 					return 'OLSKErrorNotValid';
 				}
 
-				if (metadata.OLSKFlexAuthMetadataFolderPath.slice(-1) !== '/') {
+				if (metadata.OLSKPactAuthMetadataFolderPath.slice(-1) !== '/') {
 					return 'OLSKErrorNotValid';
 				}
 			})());
 		}
 
-		if (inputData.OLSKFlexAuthType === mod.OLSKFlexAuthTypeEmail()) {
-			if (!outputData.OLSKFlexAuthIdentity && !mod.OLSKFlexAuthIdentityIsStorageAddress(inputData.OLSKFlexAuthIdentity)) {
-				_error('OLSKFlexAuthIdentity', 'OLSKErrorNotValid');
+		if (inputData.OLSKPactAuthType === mod.OLSKPactAuthTypeEmail()) {
+			if (!outputData.OLSKPactAuthIdentity && !mod.OLSKPactAuthIdentityIsStorageAddress(inputData.OLSKPactAuthIdentity)) {
+				_error('OLSKPactAuthIdentity', 'OLSKErrorNotValid');
 			}
 		}
 
 		return Object.entries(outputData).length ? outputData : null;
 	},
 
-	OLSKFlexPayProcessorStripe () {
+	OLSKPactPayProcessorStripe () {
 		return 'OLSK_FLEX_PAY_PROCESSOR_STRIPE';
 	},
 
-	OLSKFlexPayProcessorPayPal () {
+	OLSKPactPayProcessorPayPal () {
 		return 'OLSK_FLEX_PAY_PROCESSOR_PAYPAL';
 	},
 
-	OLSKFlexPayProcessors () {
+	OLSKPactPayProcessors () {
 		return [
-			mod.OLSKFlexPayProcessorStripe(),
-			mod.OLSKFlexPayProcessorPayPal(),
+			mod.OLSKPactPayProcessorStripe(),
+			mod.OLSKPactPayProcessorPayPal(),
 		];
 	},
 
-	OLSKFlexPayModelErrors (inputData) {
+	OLSKPactPayModelErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('OLSKErrorInputNotValid');
 		}
@@ -125,42 +125,42 @@ const mod = {
 			outputData[param1] = (outputData[param1] || []).concat(param2);
 		};
 
-		if (!uIsFilled(inputData.OLSKFlexPayIdentity)) {
-			_error('OLSKFlexPayIdentity', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactPayIdentity)) {
+			_error('OLSKPactPayIdentity', 'OLSKErrorNotFilled');
 		}
 
-		if (!uIsFilled(inputData.OLSKFlexPayTransaction)) {
-			_error('OLSKFlexPayTransaction', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactPayTransaction)) {
+			_error('OLSKPactPayTransaction', 'OLSKErrorNotFilled');
 		}
 
-		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexPayProcessor)) {
-			_error('OLSKFlexPayProcessor', 'OLSKErrorNotValid');
+		if (!mod.OLSKPactPayProcessors().includes(inputData.OLSKPactPayProcessor)) {
+			_error('OLSKPactPayProcessor', 'OLSKErrorNotValid');
 		}
 
 		return Object.entries(outputData).length ? outputData : null;
 	},
 
-	OLSKFlexGrantFrequencyOptionYearly () {
-		return 'kOLSKFlexGrantFrequencyOptionYearly';
+	OLSKPactGrantFrequencyOptionYearly () {
+		return 'kOLSKPactGrantFrequencyOptionYearly';
 	},
 
-	OLSKFlexGrantFrequencyOptionMonthly () {
-		return 'kOLSKFlexGrantFrequencyOptionMonthly';
+	OLSKPactGrantFrequencyOptionMonthly () {
+		return 'kOLSKPactGrantFrequencyOptionMonthly';
 	},
 
-	OLSKFlexGrantFrequencyOptionOnce () {
-		return 'kOLSKFlexGrantFrequencyOptionOnce';
+	OLSKPactGrantFrequencyOptionOnce () {
+		return 'kOLSKPactGrantFrequencyOptionOnce';
 	},
 
-	OLSKFlexGrantFrequencyOptions () {
+	OLSKPactGrantFrequencyOptions () {
 		return [
-			mod.OLSKFlexGrantFrequencyOptionYearly(),
-			mod.OLSKFlexGrantFrequencyOptionMonthly(),
-			mod.OLSKFlexGrantFrequencyOptionOnce(),
+			mod.OLSKPactGrantFrequencyOptionYearly(),
+			mod.OLSKPactGrantFrequencyOptionMonthly(),
+			mod.OLSKPactGrantFrequencyOptionOnce(),
 		];
 	},
 
-	OLSKFlexGrantModelErrors (inputData) {
+	OLSKPactGrantModelErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('OLSKErrorInputNotValid');
 		}
@@ -174,46 +174,46 @@ const mod = {
 			outputData[param1] = (outputData[param1] || []).concat(param2);
 		};
 
-		if (!Array.isArray(inputData.OLSKFlexGrantPublicNumbers)) {
-			_error('OLSKFlexGrantPublicNumbers', 'OLSKErrorNotArray');
-		} else if (!inputData.OLSKFlexGrantPublicNumbers.length) {
-			_error('OLSKFlexGrantPublicNumbers', 'OLSKErrorNotFilled');
+		if (!Array.isArray(inputData.OLSKPactGrantPublicNumbers)) {
+			_error('OLSKPactGrantPublicNumbers', 'OLSKErrorNotArray');
+		} else if (!inputData.OLSKPactGrantPublicNumbers.length) {
+			_error('OLSKPactGrantPublicNumbers', 'OLSKErrorNotFilled');
 		}
 
-		if (!uIsFilled(inputData.OLSKFlexGrantIdentity)) {
-			_error('OLSKFlexGrantIdentity', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactGrantIdentity)) {
+			_error('OLSKPactGrantIdentity', 'OLSKErrorNotFilled');
 		}
 
-		if (!uIsFilled(inputData.OLSKFlexGrantProject)) {
-			_error('OLSKFlexGrantProject', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactGrantProject)) {
+			_error('OLSKPactGrantProject', 'OLSKErrorNotFilled');
 		}
 
-		if (!uIsDate(inputData.OLSKFlexGrantStartDate)) {
-			_error('OLSKFlexGrantStartDate', 'OLSKErrorNotDate');
+		if (!uIsDate(inputData.OLSKPactGrantStartDate)) {
+			_error('OLSKPactGrantStartDate', 'OLSKErrorNotDate');
 		}
 
-		if (!uIsDate(inputData.OLSKFlexGrantEndDate)) {
-			_error('OLSKFlexGrantEndDate', 'OLSKErrorNotDate');
+		if (!uIsDate(inputData.OLSKPactGrantEndDate)) {
+			_error('OLSKPactGrantEndDate', 'OLSKErrorNotDate');
 		}
 
-		if (typeof inputData.OLSKFlexGrantContribution !== 'number') {
-			_error('OLSKFlexGrantContribution', 'OLSKErrorNotNumber');
+		if (typeof inputData.OLSKPactGrantContribution !== 'number') {
+			_error('OLSKPactGrantContribution', 'OLSKErrorNotNumber');
 		}
 
-		if (!mod.OLSKFlexGrantFrequencyOptions().includes(inputData.OLSKFlexGrantFrequencyOption)) {
-			_error('OLSKFlexGrantFrequencyOption', 'OLSKErrorNotValid');
+		if (!mod.OLSKPactGrantFrequencyOptions().includes(inputData.OLSKPactGrantFrequencyOption)) {
+			_error('OLSKPactGrantFrequencyOption', 'OLSKErrorNotValid');
 		}
 
-		if (!mod.OLSKFlexPayProcessors().includes(inputData.OLSKFlexGrantProcessor)) {
-			_error('OLSKFlexGrantProcessor', 'OLSKErrorNotValid');
+		if (!mod.OLSKPactPayProcessors().includes(inputData.OLSKPactGrantProcessor)) {
+			_error('OLSKPactGrantProcessor', 'OLSKErrorNotValid');
 		}
 
-		if (!uIsFilled(inputData.OLSKFlexGrantProcessorReference)) {
-			_error('OLSKFlexGrantProcessorReference', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactGrantProcessorReference)) {
+			_error('OLSKPactGrantProcessorReference', 'OLSKErrorNotFilled');
 		}
 
-		if (typeof inputData.OLSKFlexGrantActive !== 'boolean') {
-			_error('OLSKFlexGrantActive', 'OLSKErrorNotBoolean');
+		if (typeof inputData.OLSKPactGrantActive !== 'boolean') {
+			_error('OLSKPactGrantActive', 'OLSKErrorNotBoolean');
 		}
 
 		return Object.entries(outputData).length ? outputData : null;
