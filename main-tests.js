@@ -5,7 +5,7 @@ const mod = require('./main.js');
 describe('OLSKPactAuthTypeEmail', function test_OLSKPactAuthTypeEmail() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactAuthTypeEmail(), 'OLSK_FLEX_AUTH_TYPE_EMAIL');
+		deepEqual(mod.OLSKPactAuthTypeEmail(), 'OLSK_PACT_AUTH_TYPE_EMAIL');
 	});
 
 });
@@ -13,7 +13,7 @@ describe('OLSKPactAuthTypeEmail', function test_OLSKPactAuthTypeEmail() {
 describe('OLSKPactAuthTypeStorage', function test_OLSKPactAuthTypeStorage() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactAuthTypeStorage(), 'OLSK_FLEX_AUTH_TYPE_STORAGE');
+		deepEqual(mod.OLSKPactAuthTypeStorage(), 'OLSK_PACT_AUTH_TYPE_STORAGE');
 	});
 
 });
@@ -242,7 +242,7 @@ describe('OLSKPactPayModelErrors', function test_OLSKPactAuthModelErrors() {
 describe('OLSKPactPayProcessorStripe', function test_OLSKPactPayProcessorStripe() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactPayProcessorStripe(), 'OLSK_FLEX_PAY_PROCESSOR_STRIPE');
+		deepEqual(mod.OLSKPactPayProcessorStripe(), 'OLSK_PACT_PAY_PROCESSOR_STRIPE');
 	});
 
 });
@@ -250,7 +250,7 @@ describe('OLSKPactPayProcessorStripe', function test_OLSKPactPayProcessorStripe(
 describe('OLSKPactPayProcessorPayPal', function test_OLSKPactPayProcessorPayPal() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactPayProcessorPayPal(), 'OLSK_FLEX_PAY_PROCESSOR_PAYPAL');
+		deepEqual(mod.OLSKPactPayProcessorPayPal(), 'OLSK_PACT_PAY_PROCESSOR_PAYPAL');
 	});
 
 });

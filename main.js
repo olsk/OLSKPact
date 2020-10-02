@@ -9,11 +9,11 @@ const uIsDate = function (inputData) {
 const mod = {
 
 	OLSKPactAuthTypeEmail () {
-		return 'OLSK_FLEX_AUTH_TYPE_EMAIL';
+		return 'OLSK_PACT_AUTH_TYPE_EMAIL';
 	},
 
 	OLSKPactAuthTypeStorage () {
-		return 'OLSK_FLEX_AUTH_TYPE_STORAGE';
+		return 'OLSK_PACT_AUTH_TYPE_STORAGE';
 	},
 
 	OLSKPactAuthTypes () {
@@ -97,11 +97,11 @@ const mod = {
 	},
 
 	OLSKPactPayProcessorStripe () {
-		return 'OLSK_FLEX_PAY_PROCESSOR_STRIPE';
+		return 'OLSK_PACT_PAY_PROCESSOR_STRIPE';
 	},
 
 	OLSKPactPayProcessorPayPal () {
-		return 'OLSK_FLEX_PAY_PROCESSOR_PAYPAL';
+		return 'OLSK_PACT_PAY_PROCESSOR_PAYPAL';
 	},
 
 	OLSKPactPayProcessors () {
