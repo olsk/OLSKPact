@@ -154,8 +154,10 @@ const mod = {
 		}
 
 		return {
-			DonateIntentIdentity: result.a || 'UNSET_GRANT_IDENTITY',
-			DonateIntentProject: result.b || 'UNSET_GRANT_PROJECT',
+			DonateIntentIdentity: result.a,
+			DonateIntentConfirmation: result.b,
+			DonateIntentProject: result.c,
+			DonateIntentVoucher: result.d,
 		};
 	},
 

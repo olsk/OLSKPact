@@ -353,24 +353,23 @@ describe('OLSKPactMetadataDecompress', function test_OLSKPactMetadataDecompress(
 	});
 
 	it('returns object', function () {
-		deepEqual(mod.OLSKPactMetadataDecompress('{}'), {
-			DonateIntentIdentity: 'UNSET_GRANT_IDENTITY',
-			DonateIntentProject: 'UNSET_GRANT_PROJECT',
-		});
+		deepEqual(typeof mod.OLSKPactMetadataDecompress('{}'), 'object');
 	});
 
 	it('maps DonateIntentIdentity', function () {
-		deepEqual(mod.OLSKPactMetadataDecompress('{"a":"alfa"}'), {
-			DonateIntentIdentity: 'alfa',
-			DonateIntentProject: 'UNSET_GRANT_PROJECT',
-		});
+		deepEqual(mod.OLSKPactMetadataDecompress('{"a":"alfa"}').DonateIntentIdentity, 'alfa');
+	});
+
+	it('maps DonateIntentConfirmation', function () {
+		deepEqual(mod.OLSKPactMetadataDecompress('{"b":"alfa"}').DonateIntentConfirmation, 'alfa');
 	});
 
 	it('maps DonateIntentProject', function () {
-		deepEqual(mod.OLSKPactMetadataDecompress('{"b":"alfa"}'), {
-			DonateIntentIdentity: 'UNSET_GRANT_IDENTITY',
-			DonateIntentProject: 'alfa',
-		});
+		deepEqual(mod.OLSKPactMetadataDecompress('{"c":"alfa"}').DonateIntentProject, 'alfa');
+	});
+
+	it('maps DonateIntentVoucher', function () {
+		deepEqual(mod.OLSKPactMetadataDecompress('{"d":"alfa"}').DonateIntentVoucher, 'alfa');
 	});
 
 });
