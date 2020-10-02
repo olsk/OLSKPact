@@ -236,6 +236,12 @@ const mod = {
 		if (typeof inputData.OLSKPactGrantActive !== 'boolean') {
 			_error('OLSKPactGrantActive', 'OLSKErrorNotBoolean');
 		}
+		
+		if (inputData.OLSKPactGrantProcessorVoucher) {
+			if (!uIsFilled(inputData.OLSKPactGrantProcessorVoucher)) {
+				_error('OLSKPactGrantProcessorVoucher', 'OLSKErrorNotFilled');
+			}
+		}
 
 		return Object.entries(outputData).length ? outputData : null;
 	},
