@@ -137,20 +137,6 @@ const mod = {
 			_error('OLSKFlexPayProcessor', 'OLSKErrorNotValid');
 		}
 
-		if (inputData.OLSKFlexPayProcessor === mod.OLSKFlexPayProcessorPayPal()) {
-			const metadata = inputData.OLSKFlexPayMetadata;
-
-			_error('OLSKFlexPayMetadata', (function() {
-				if (typeof metadata !== 'object' || metadata === null) {
-					return 'OLSKErrorNotObject';
-				}
-
-				if (!uIsFilled(metadata.OLSKFlexPayMetadataProject)) {
-					return 'OLSKErrorNotValid';
-				}
-			})());
-		}
-
 		return Object.entries(outputData).length ? outputData : null;
 	},
 

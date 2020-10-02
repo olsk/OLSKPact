@@ -336,53 +336,6 @@ describe('OLSKFlexPayModelErrors', function test_OLSKFlexPayModelErrors() {
 		deepEqual(mod.OLSKFlexPayModelErrors(uItem()), null);
 	});
 
-	context('OLSKFlexPayProcessorPayPal', function () {
-
-		const uItemPayPal = function (inputData) {
-			return {
-				OLSKFlexPayProcessor: mod.OLSKFlexPayProcessorPayPal(),
-				OLSKFlexPayMetadata: Object.assign({
-					OLSKFlexPayMetadataProject: 'delta',
-				}, inputData),
-			};
-		};
-
-		it('returns object if OLSKFlexPayMetadata not object', function() {
-			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal(), {
-				OLSKFlexPayMetadata: null,
-			})), {
-				OLSKFlexPayMetadata: [
-					'OLSKErrorNotObject',
-				],
-			});
-		});
-
-		it('returns object if OLSKFlexPayMetadataProject not string', function() {
-			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal({
-				OLSKFlexPayMetadataProject: null,
-			}))), {
-				OLSKFlexPayMetadata: [
-					'OLSKErrorNotValid',
-				],
-			});
-		});
-
-		it('returns object if OLSKFlexPayMetadataProject not filled', function() {
-			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal({
-				OLSKFlexPayMetadataProject: ' ',
-			}))), {
-				OLSKFlexPayMetadata: [
-					'OLSKErrorNotValid',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mod.OLSKFlexPayModelErrors(uItem(uItemPayPal())), null);
-		});
-
-	});
-
 });
 
 describe('OLSKFlexGrantFrequencyOptionYearly', function test_OLSKFlexGrantFrequencyOptionYearly() {
