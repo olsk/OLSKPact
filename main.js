@@ -181,6 +181,35 @@ const mod = {
 		];
 	},
 
+	OLSKPactIntentModelErrors (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('RCSErrorInputNotValid');
+		}
+
+
+		if (typeof inputData.OLSKPactIntentIdentity !== 'string') {
+			return false;
+		}
+
+		if (parseInt(inputData.OLSKPactIntentAmount) !== inputData.OLSKPactIntentAmount) {
+			return false;
+		}
+
+		if (!mod.OLSKPactGrantFrequencyOptions().includes(inputData.OLSKPactIntentFrequency)) {
+			return false;
+		}
+
+		if (typeof inputData.OLSKPactIntentConfirmation !== 'string') {
+			return false;
+		}
+
+		if (typeof inputData.OLSKPactIntentProject !== 'string') {
+			return false;
+		}
+
+		return true;
+	},
+
 	OLSKPactGrantModelErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('OLSKErrorInputNotValid');

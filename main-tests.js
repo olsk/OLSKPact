@@ -410,6 +410,66 @@ describe('OLSKPactGrantFrequencyOptions', function test_OLSKPactGrantFrequencyOp
 
 });
 
+describe('OLSKPactIntentModelErrors', function test_OLSKPactIntentModelErrors() {
+
+	const _OLSKPactIntentModelErrors = function (inputData) {
+		return mod.OLSKPactIntentModelErrors(Object.assign({
+			OLSKPactIntentIdentity: Math.random().toString(),
+			OLSKPactIntentAmount: Date.now(),
+			OLSKPactIntentFrequency: mod.OLSKPactGrantFrequencyOptions()[Date.now() % 3],
+			OLSKPactIntentConfirmation: Math.random().toString(),
+			OLSKPactIntentProject: Math.random().toString(),
+		}, inputData))
+	}
+
+	it('throws if not object', function() {
+		throws(function() {
+			mod.OLSKPactIntentModelErrors(null);
+		}, /RCSErrorInputNotValid/);
+	});
+	
+	it('returns false if OLSKPactIntentIdentity not string', function() {
+		deepEqual(_OLSKPactIntentModelErrors({
+			OLSKPactIntentIdentity: null,
+		}), false);
+	});
+	
+	it('returns false if OLSKPactIntentAmount not number', function() {
+		deepEqual(_OLSKPactIntentModelErrors({
+			OLSKPactIntentAmount: null,
+		}), false);
+	});
+	
+	it('returns false if OLSKPactIntentAmount not integer', function() {
+		deepEqual(_OLSKPactIntentModelErrors({
+			OLSKPactIntentAmount: 1.2,
+		}), false);
+	});
+	
+	it('returns false if OLSKPactIntentFrequency not valid', function() {
+		deepEqual(_OLSKPactIntentModelErrors({
+			OLSKPactIntentFrequency: 'alfa',
+		}), false);
+	});
+	
+	it('returns false if OLSKPactIntentConfirmation not string', function() {
+		deepEqual(_OLSKPactIntentModelErrors({
+			OLSKPactIntentConfirmation: null,
+		}), false);
+	});
+	
+	it('returns false if OLSKPactIntentProject not string', function() {
+		deepEqual(_OLSKPactIntentModelErrors({
+			OLSKPactIntentProject: null,
+		}), false);
+	});
+	
+	it('returns true', function() {
+		deepEqual(_OLSKPactIntentModelErrors(), true);
+	});
+
+});
+
 describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 
 	const uItem = function (inputData = {}) {
