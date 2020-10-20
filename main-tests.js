@@ -338,6 +338,44 @@ describe('OLSKPactPayModelErrors', function test_OLSKPactPayModelErrors() {
 
 });
 
+describe('OLSKPactMetadataCompress', function test_OLSKPactMetadataCompress() {
+
+	it('throws if not object', function () {
+		throws(function () {
+			mod.OLSKPactMetadataCompress(null);
+		}, /RCSErrorInputNotValid/);
+	});
+
+	it('returns string', function () {
+		deepEqual(mod.OLSKPactMetadataCompress({}), '{}');
+	});
+
+	it('maps DonateIntentIdentity', function () {
+		deepEqual(mod.OLSKPactMetadataCompress({
+			DonateIntentIdentity: 'alfa',
+		}), '{"a":"alfa"}');
+	});
+
+	it('maps DonateIntentConfirmation', function () {
+		deepEqual(mod.OLSKPactMetadataCompress({
+			DonateIntentConfirmation: 'alfa',
+		}), '{"b":"alfa"}');
+	});
+
+	it('maps DonateIntentProject', function () {
+		deepEqual(mod.OLSKPactMetadataCompress({
+			DonateIntentProject: 'alfa',
+		}), '{"c":"alfa"}');
+	});
+
+	it('maps DonateIntentVoucher', function () {
+		deepEqual(mod.OLSKPactMetadataCompress({
+			DonateIntentVoucher: 'alfa',
+		}), '{"d":"alfa"}');
+	});
+
+});
+
 describe('OLSKPactMetadataDecompress', function test_OLSKPactMetadataDecompress() {
 
 	it('throws if not string', function () {

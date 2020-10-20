@@ -140,6 +140,32 @@ const mod = {
 		return Object.entries(outputData).length ? outputData : null;
 	},
 
+	OLSKPactMetadataCompress (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('RCSErrorInputNotValid');
+		}
+
+		const result = {};
+
+		if (inputData.DonateIntentIdentity) {
+			result.a = inputData.DonateIntentIdentity;
+		}
+
+		if (inputData.DonateIntentConfirmation) {
+			result.b = inputData.DonateIntentConfirmation;
+		}
+
+		if (inputData.DonateIntentProject) {
+			result.c = inputData.DonateIntentProject;
+		}
+
+		if (inputData.DonateIntentVoucher) {
+			result.d = inputData.DonateIntentVoucher;
+		}
+
+		return JSON.stringify(result);
+	},
+
 	OLSKPactMetadataDecompress (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('OLSKErrorInputNotValid');
