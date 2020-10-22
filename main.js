@@ -207,7 +207,7 @@ const mod = {
 		];
 	},
 
-	OLSKPactIntentModelErrors (inputData) {
+	OLSKPactIntentModelIsValid (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('RCSErrorInputNotValid');
 		}

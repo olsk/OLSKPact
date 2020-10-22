@@ -448,10 +448,10 @@ describe('OLSKPactGrantFrequencyOptions', function test_OLSKPactGrantFrequencyOp
 
 });
 
-describe('OLSKPactIntentModelErrors', function test_OLSKPactIntentModelErrors() {
+describe('OLSKPactIntentModelIsValid', function test_OLSKPactIntentModelIsValid() {
 
-	const _OLSKPactIntentModelErrors = function (inputData) {
-		return mod.OLSKPactIntentModelErrors(Object.assign({
+	const _OLSKPactIntentModelIsValid = function (inputData) {
+		return mod.OLSKPactIntentModelIsValid(Object.assign({
 			OLSKPactIntentIdentity: Math.random().toString(),
 			OLSKPactIntentAmount: Date.now(),
 			OLSKPactIntentFrequency: mod.OLSKPactGrantFrequencyOptions()[Date.now() % 3],
@@ -462,48 +462,48 @@ describe('OLSKPactIntentModelErrors', function test_OLSKPactIntentModelErrors() 
 
 	it('throws if not object', function() {
 		throws(function() {
-			mod.OLSKPactIntentModelErrors(null);
+			mod.OLSKPactIntentModelIsValid(null);
 		}, /RCSErrorInputNotValid/);
 	});
 	
 	it('returns false if OLSKPactIntentIdentity not string', function() {
-		deepEqual(_OLSKPactIntentModelErrors({
+		deepEqual(_OLSKPactIntentModelIsValid({
 			OLSKPactIntentIdentity: null,
 		}), false);
 	});
 	
 	it('returns false if OLSKPactIntentAmount not number', function() {
-		deepEqual(_OLSKPactIntentModelErrors({
+		deepEqual(_OLSKPactIntentModelIsValid({
 			OLSKPactIntentAmount: null,
 		}), false);
 	});
 	
 	it('returns false if OLSKPactIntentAmount not integer', function() {
-		deepEqual(_OLSKPactIntentModelErrors({
+		deepEqual(_OLSKPactIntentModelIsValid({
 			OLSKPactIntentAmount: 1.2,
 		}), false);
 	});
 	
 	it('returns false if OLSKPactIntentFrequency not valid', function() {
-		deepEqual(_OLSKPactIntentModelErrors({
+		deepEqual(_OLSKPactIntentModelIsValid({
 			OLSKPactIntentFrequency: 'alfa',
 		}), false);
 	});
 	
 	it('returns false if OLSKPactIntentConfirmation not string', function() {
-		deepEqual(_OLSKPactIntentModelErrors({
+		deepEqual(_OLSKPactIntentModelIsValid({
 			OLSKPactIntentConfirmation: null,
 		}), false);
 	});
 	
 	it('returns false if OLSKPactIntentProject not string', function() {
-		deepEqual(_OLSKPactIntentModelErrors({
+		deepEqual(_OLSKPactIntentModelIsValid({
 			OLSKPactIntentProject: null,
 		}), false);
 	});
 	
 	it('returns true', function() {
-		deepEqual(_OLSKPactIntentModelErrors(), true);
+		deepEqual(_OLSKPactIntentModelIsValid(), true);
 	});
 
 });
