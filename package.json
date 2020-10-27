@@ -1,0 +1,7 @@
+{
+  "name": "OLSKPact",
+  "main": "main.js",
+  "dependencies": {
+    "jshashes": "latest"
+  }
+}
