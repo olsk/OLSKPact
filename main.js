@@ -147,20 +147,20 @@ const mod = {
 
 		const result = {};
 
-		if (inputData.DonateIntentIdentity) {
-			result.a = inputData.DonateIntentIdentity;
+		if (inputData.OLSKPactIntentIdentity) {
+			result.a = inputData.OLSKPactIntentIdentity;
 		}
 
-		if (inputData.DonateIntentConfirmation) {
-			result.b = inputData.DonateIntentConfirmation;
+		if (inputData.OLSKPactIntentConfirmation) {
+			result.b = inputData.OLSKPactIntentConfirmation;
 		}
 
-		if (inputData.DonateIntentProject) {
-			result.c = inputData.DonateIntentProject;
+		if (inputData.OLSKPactIntentProject) {
+			result.c = inputData.OLSKPactIntentProject;
 		}
 
-		if (inputData.DonateIntentVoucher) {
-			result.d = inputData.DonateIntentVoucher;
+		if (inputData.OLSKPactIntentVoucher) {
+			result.d = inputData.OLSKPactIntentVoucher;
 		}
 
 		return JSON.stringify(result);
@@ -180,10 +180,10 @@ const mod = {
 		}
 
 		return {
-			DonateIntentIdentity: result.a,
-			DonateIntentConfirmation: result.b,
-			DonateIntentProject: result.c,
-			DonateIntentVoucher: result.d,
+			OLSKPactIntentIdentity: result.a,
+			OLSKPactIntentConfirmation: result.b,
+			OLSKPactIntentProject: result.c,
+			OLSKPactIntentVoucher: result.d,
 		};
 	},
 
