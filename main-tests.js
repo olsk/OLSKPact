@@ -59,7 +59,7 @@ describe('OLSKPactAuthIdentityIsStorageAddress', function test_OLSKPactAuthIdent
 
 });
 
-describe('OLSKPactPayModelErrors', function test_OLSKPactAuthModelErrors() {
+describe('OLSKPactAuthModelErrors', function test_OLSKPactAuthModelErrors() {
 
 	const uItem = function () {
 		return Object.assign.apply(null, [{
