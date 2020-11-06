@@ -133,10 +133,6 @@ const mod = {
 			_error('OLSKPactPayTransaction', 'OLSKErrorNotFilled');
 		}
 
-		if (!mod.OLSKPactPayProcessors().includes(inputData.OLSKPactPayProcessor)) {
-			_error('OLSKPactPayProcessor', 'OLSKErrorNotValid');
-		}
-
 		return Object.entries(outputData).length ? outputData : null;
 	},
 

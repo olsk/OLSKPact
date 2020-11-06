@@ -272,7 +272,6 @@ describe('OLSKPactPayModelErrors', function test_OLSKPactPayModelErrors() {
 		return Object.assign({
 			OLSKPactPayIdentity: 'alfa',
 			OLSKPactPayTransaction: 'bravo',
-			OLSKPactPayProcessor: mod.OLSKPactPayProcessorStripe(),
 		}, ...arguments);
 	};
 
@@ -318,16 +317,6 @@ describe('OLSKPactPayModelErrors', function test_OLSKPactPayModelErrors() {
 		})), {
 			OLSKPactPayTransaction: [
 				'OLSKErrorNotFilled',
-			],
-		});
-	});
-
-	it('returns object if OLSKPactPayProcessor not valid', function() {
-		deepEqual(mod.OLSKPactPayModelErrors(uItem({
-			OLSKPactPayProcessor: null,
-		})), {
-			OLSKPactPayProcessor: [
-				'OLSKErrorNotValid',
 			],
 		});
 	});
