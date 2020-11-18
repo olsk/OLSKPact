@@ -192,7 +192,7 @@ const mod = {
 	},
 
 	OLSKPactGrantFrequencyOptionOnce () {
-		return 'kOLSKPactGrantFrequencyOptionOnce';
+		return 'OLSK_PACT_GRANT_FREQUENCY_ONCE';
 	},
 
 	OLSKPactGrantFrequencyOptions () {

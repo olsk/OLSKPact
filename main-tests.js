@@ -420,7 +420,7 @@ describe('OLSKPactGrantFrequencyOptionMonthly', function test_OLSKPactGrantFrequ
 describe('OLSKPactGrantFrequencyOptionOnce', function test_OLSKPactGrantFrequencyOptionOnce() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactGrantFrequencyOptionOnce(), 'kOLSKPactGrantFrequencyOptionOnce');
+		deepEqual(mod.OLSKPactGrantFrequencyOptionOnce(), 'OLSK_PACT_GRANT_FREQUENCY_ONCE');
 	});
 
 });
