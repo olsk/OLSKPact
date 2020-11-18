@@ -12,14 +12,14 @@ const mod = {
 		return 'OLSK_PACT_AUTH_TYPE_EMAIL';
 	},
 
-	OLSKPactAuthTypeStorage () {
+	OLSKPactAuthTypeRemoteStorage () {
 		return 'OLSK_PACT_AUTH_TYPE_STORAGE';
 	},
 
 	OLSKPactAuthTypes () {
 		return [
 			mod.OLSKPactAuthTypeEmail(),
-			mod.OLSKPactAuthTypeStorage(),
+			mod.OLSKPactAuthTypeRemoteStorage(),
 		];
 	},
 
@@ -57,7 +57,7 @@ const mod = {
 			_error('OLSKPactAuthProof', 'OLSKErrorNotFilled');
 		}
 
-		if (inputData.OLSKPactAuthType === mod.OLSKPactAuthTypeStorage()) {
+		if (inputData.OLSKPactAuthType === mod.OLSKPactAuthTypeRemoteStorage()) {
 			if (!mod.OLSKPactAuthIdentityIsStorageAddress(inputData.OLSKPactAuthIdentity)) {
 				_error('OLSKPactAuthIdentity', 'OLSKErrorNotValid');
 			}

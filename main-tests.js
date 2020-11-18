@@ -10,10 +10,10 @@ describe('OLSKPactAuthTypeEmail', function test_OLSKPactAuthTypeEmail() {
 
 });
 
-describe('OLSKPactAuthTypeStorage', function test_OLSKPactAuthTypeStorage() {
+describe('OLSKPactAuthTypeRemoteStorage', function test_OLSKPactAuthTypeRemoteStorage() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactAuthTypeStorage(), 'OLSK_PACT_AUTH_TYPE_STORAGE');
+		deepEqual(mod.OLSKPactAuthTypeRemoteStorage(), 'OLSK_PACT_AUTH_TYPE_STORAGE');
 	});
 
 });
@@ -23,7 +23,7 @@ describe('OLSKPactAuthTypes', function test_OLSKPactAuthTypes() {
 	it('returns array', function () {
 		deepEqual(mod.OLSKPactAuthTypes(), [
 			mod.OLSKPactAuthTypeEmail(),
-			mod.OLSKPactAuthTypeStorage(),
+			mod.OLSKPactAuthTypeRemoteStorage(),
 			]);
 	});
 
@@ -129,11 +129,11 @@ describe('OLSKPactAuthModelErrors', function test_OLSKPactAuthModelErrors() {
 		deepEqual(mod.OLSKPactAuthModelErrors(uItem()), null);
 	});
 
-	context('OLSKPactAuthTypeStorage', function () {
+	context('OLSKPactAuthTypeRemoteStorage', function () {
 
 		const uItemStorage = function (inputData) {
 			return {
-				OLSKPactAuthType: mod.OLSKPactAuthTypeStorage(),
+				OLSKPactAuthType: mod.OLSKPactAuthTypeRemoteStorage(),
 				OLSKPactAuthIdentity: 'alfa@bravo.charlie',
 				OLSKPactAuthProof: 'bravo',
 				OLSKPactAuthMetadata: Object.assign({
