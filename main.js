@@ -13,7 +13,7 @@ const mod = {
 	},
 
 	OLSKPactAuthTypeRemoteStorage () {
-		return 'OLSK_PACT_AUTH_TYPE_STORAGE';
+		return 'OLSK_PACT_AUTH_TYPE_REMOTE_STORAGE';
 	},
 
 	OLSKPactAuthTypes () {

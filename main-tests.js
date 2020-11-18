@@ -13,7 +13,7 @@ describe('OLSKPactAuthTypeEmail', function test_OLSKPactAuthTypeEmail() {
 describe('OLSKPactAuthTypeRemoteStorage', function test_OLSKPactAuthTypeRemoteStorage() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactAuthTypeRemoteStorage(), 'OLSK_PACT_AUTH_TYPE_STORAGE');
+		deepEqual(mod.OLSKPactAuthTypeRemoteStorage(), 'OLSK_PACT_AUTH_TYPE_REMOTE_STORAGE');
 	});
 
 });
