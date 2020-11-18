@@ -188,7 +188,7 @@ const mod = {
 	},
 
 	OLSKPactGrantFrequencyOptionMonthly () {
-		return 'kOLSKPactGrantFrequencyOptionMonthly';
+		return 'OLSK_PACT_GRANT_FREQUENCY_MONTHLY';
 	},
 
 	OLSKPactGrantFrequencyOptionOnce () {
