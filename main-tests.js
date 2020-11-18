@@ -404,7 +404,7 @@ describe('OLSKPactMetadataDecompress', function test_OLSKPactMetadataDecompress(
 describe('OLSKPactGrantFrequencyOptionYearly', function test_OLSKPactGrantFrequencyOptionYearly() {
 
 	it('returns string', function () {
-		deepEqual(mod.OLSKPactGrantFrequencyOptionYearly(), 'kOLSKPactGrantFrequencyOptionYearly');
+		deepEqual(mod.OLSKPactGrantFrequencyOptionYearly(), 'OLSK_PACT_GRANT_FREQUENCY_YEARLY');
 	});
 
 });
