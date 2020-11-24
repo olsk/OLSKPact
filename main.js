@@ -147,8 +147,8 @@ const mod = {
 			result.a = inputData.OLSKPactIntentIdentity;
 		}
 
-		if (inputData.OLSKPactIntentConfirmation) {
-			result.b = inputData.OLSKPactIntentConfirmation;
+		if (inputData.OLSKPactIntentClue) {
+			result.b = inputData.OLSKPactIntentClue;
 		}
 
 		if (inputData.OLSKPactIntentProject) {
@@ -177,7 +177,7 @@ const mod = {
 
 		return {
 			OLSKPactIntentIdentity: result.a,
-			OLSKPactIntentConfirmation: result.b,
+			OLSKPactIntentClue: result.b,
 			OLSKPactIntentProject: result.c,
 			OLSKPactIntentVoucher: result.d,
 		};
@@ -221,7 +221,7 @@ const mod = {
 			return false;
 		}
 
-		if (typeof inputData.OLSKPactIntentConfirmation !== 'string') {
+		if (typeof inputData.OLSKPactIntentClue !== 'string') {
 			return false;
 		}
 

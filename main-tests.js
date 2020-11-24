@@ -345,9 +345,9 @@ describe('OLSKPactMetadataCompress', function test_OLSKPactMetadataCompress() {
 		}), '{"a":"alfa"}');
 	});
 
-	it('maps OLSKPactIntentConfirmation', function () {
+	it('maps OLSKPactIntentClue', function () {
 		deepEqual(mod.OLSKPactMetadataCompress({
-			OLSKPactIntentConfirmation: 'alfa',
+			OLSKPactIntentClue: 'alfa',
 		}), '{"b":"alfa"}');
 	});
 
@@ -387,8 +387,8 @@ describe('OLSKPactMetadataDecompress', function test_OLSKPactMetadataDecompress(
 		deepEqual(mod.OLSKPactMetadataDecompress('{"a":"alfa"}').OLSKPactIntentIdentity, 'alfa');
 	});
 
-	it('maps OLSKPactIntentConfirmation', function () {
-		deepEqual(mod.OLSKPactMetadataDecompress('{"b":"alfa"}').OLSKPactIntentConfirmation, 'alfa');
+	it('maps OLSKPactIntentClue', function () {
+		deepEqual(mod.OLSKPactMetadataDecompress('{"b":"alfa"}').OLSKPactIntentClue, 'alfa');
 	});
 
 	it('maps OLSKPactIntentProject', function () {
@@ -444,7 +444,7 @@ describe('OLSKPactIntentModelIsValid', function test_OLSKPactIntentModelIsValid(
 			OLSKPactIntentIdentity: Math.random().toString(),
 			OLSKPactIntentAmount: Date.now(),
 			OLSKPactIntentFrequency: mod.OLSKPactGrantFrequencyOptions()[Date.now() % 3],
-			OLSKPactIntentConfirmation: Math.random().toString(),
+			OLSKPactIntentClue: Math.random().toString(),
 			OLSKPactIntentProject: Math.random().toString(),
 		}, inputData))
 	}
@@ -479,9 +479,9 @@ describe('OLSKPactIntentModelIsValid', function test_OLSKPactIntentModelIsValid(
 		}), false);
 	});
 	
-	it('returns false if OLSKPactIntentConfirmation not string', function() {
+	it('returns false if OLSKPactIntentClue not string', function() {
 		deepEqual(_OLSKPactIntentModelIsValid({
-			OLSKPactIntentConfirmation: null,
+			OLSKPactIntentClue: null,
 		}), false);
 	});
 	
