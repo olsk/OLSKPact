@@ -129,8 +129,8 @@ const mod = {
 			_error('OLSKPactPayIdentity', 'OLSKErrorNotFilled');
 		}
 
-		if (!uIsFilled(inputData.OLSKPactPayTransaction)) {
-			_error('OLSKPactPayTransaction', 'OLSKErrorNotFilled');
+		if (!uIsFilled(inputData.OLSKPactPayClue)) {
+			_error('OLSKPactPayClue', 'OLSKErrorNotFilled');
 		}
 
 		return Object.entries(outputData).length ? outputData : null;

@@ -271,7 +271,7 @@ describe('OLSKPactPayModelErrors', function test_OLSKPactPayModelErrors() {
 	const uItem = function (inputData) {
 		return Object.assign({
 			OLSKPactPayIdentity: 'alfa',
-			OLSKPactPayTransaction: 'bravo',
+			OLSKPactPayClue: 'bravo',
 		}, ...arguments);
 	};
 
@@ -301,21 +301,21 @@ describe('OLSKPactPayModelErrors', function test_OLSKPactPayModelErrors() {
 		});
 	});
 
-	it('returns object if OLSKPactPayTransaction not string', function() {
+	it('returns object if OLSKPactPayClue not string', function() {
 		deepEqual(mod.OLSKPactPayModelErrors(uItem({
-			OLSKPactPayTransaction: null,
+			OLSKPactPayClue: null,
 		})), {
-			OLSKPactPayTransaction: [
+			OLSKPactPayClue: [
 				'OLSKErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if OLSKPactPayTransaction not filled', function() {
+	it('returns object if OLSKPactPayClue not filled', function() {
 		deepEqual(mod.OLSKPactPayModelErrors(uItem({
-			OLSKPactPayTransaction: ' ',
+			OLSKPactPayClue: ' ',
 		})), {
-			OLSKPactPayTransaction: [
+			OLSKPactPayClue: [
 				'OLSKErrorNotFilled',
 			],
 		});
