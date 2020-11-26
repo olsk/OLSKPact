@@ -297,6 +297,22 @@ const mod = {
 		return Object.entries(outputData).length ? outputData : null;
 	},
 
+	OLSKPactPayMatchProcessor (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('OLSKErrorInputNotValid');
+		}
+
+		if (inputData.startsWith('I-')) {
+			return mod.OLSKPactPayProcessorPayPal();
+		}
+
+		if (inputData.startsWith('sub_')) {
+			return mod.OLSKPactPayProcessorStripe();
+		}
+
+		throw new Error('OLSKErrorInputNotValid');
+	},
+
 };
 
 Object.assign(exports, mod);

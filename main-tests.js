@@ -695,3 +695,59 @@ describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 	});
 
 });
+
+describe('OLSKPactPayMatchProcessor', function test_OLSKPactPayMatchProcessor() {
+
+	it('throws if not string', function () {
+		throws(function () {
+			mod.OLSKPactPayMatchProcessor(null);
+		}, /OLSKErrorInputNotValid/);
+	});
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mod.OLSKPactPayMatchProcessor(Math.random().toString());
+		}, /OLSKErrorInputNotValid/);
+	});
+
+	context('OLSKPactPayMatchProcessorPayPal', function () {
+
+		it('excludes if not upper case', function () {
+			throws(function () {
+				mod.OLSKPactPayMatchProcessor('i-' + Math.random().toString());
+			}, /OLSKErrorInputNotValid/);
+		});
+		
+		it('excludes if no prefix', function () {
+			throws(function () {
+				mod.OLSKPactPayMatchProcessor('II-' + Math.random().toString());
+			}, /OLSKErrorInputNotValid/);
+		});
+		
+		it('returns OLSKPactPayMatchProcessor', function () {
+			deepEqual(mod.OLSKPactPayMatchProcessor('I-' + Math.random().toString()), mod.OLSKPactPayProcessorPayPal());
+		});
+	
+	});
+
+	context('OLSKPactPayMatchProcessorStripe', function () {
+
+		it('excludes if not lower case', function () {
+			throws(function () {
+				mod.OLSKPactPayMatchProcessor('SUB_' + Math.random().toString());
+			}, /OLSKErrorInputNotValid/);
+		});
+		
+		it('excludes if no prefix', function () {
+			throws(function () {
+				mod.OLSKPactPayMatchProcessor('ssub_' + Math.random().toString());
+			}, /OLSKErrorInputNotValid/);
+		});
+		
+		it('returns OLSKPactPayMatchProcessor', function () {
+			deepEqual(mod.OLSKPactPayMatchProcessor('sub_' + Math.random().toString()), mod.OLSKPactPayProcessorStripe());
+		});
+	
+	});
+
+});
