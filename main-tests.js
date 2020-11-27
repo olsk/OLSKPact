@@ -664,23 +664,23 @@ describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 		deepEqual(mod.OLSKPactGrantModelErrors(uItem()), null);
 	});
 
-	context('OLSKPactGrantProcessorVoucher', function () {
+	context('OLSKPactGrantVoucher', function () {
 		
-		it('returns object if OLSKPactGrantProcessorVoucher not string', function() {
+		it('returns object if OLSKPactGrantVoucher not string', function() {
 			deepEqual(mod.OLSKPactGrantModelErrors(uItem({
-				OLSKPactGrantProcessorVoucher: 1,
+				OLSKPactGrantVoucher: 1,
 			})), {
-				OLSKPactGrantProcessorVoucher: [
+				OLSKPactGrantVoucher: [
 					'OLSKErrorNotFilled',
 				],
 			});
 		});
 
-		it('returns object if OLSKPactGrantProcessorVoucher not filled', function() {
+		it('returns object if OLSKPactGrantVoucher not filled', function() {
 			deepEqual(mod.OLSKPactGrantModelErrors(uItem({
-				OLSKPactGrantProcessorVoucher: ' ',
+				OLSKPactGrantVoucher: ' ',
 			})), {
-				OLSKPactGrantProcessorVoucher: [
+				OLSKPactGrantVoucher: [
 					'OLSKErrorNotFilled',
 				],
 			});
@@ -688,7 +688,7 @@ describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 
 		it('returns null', function() {
 			deepEqual(mod.OLSKPactGrantModelErrors(uItem({
-				OLSKPactGrantProcessorVoucher: 'alfa'
+				OLSKPactGrantVoucher: 'alfa'
 			})), null);
 		});
 	

@@ -288,9 +288,9 @@ const mod = {
 			_error('OLSKPactGrantActive', 'OLSKErrorNotBoolean');
 		}
 		
-		if (inputData.OLSKPactGrantProcessorVoucher) {
-			if (!uIsFilled(inputData.OLSKPactGrantProcessorVoucher)) {
-				_error('OLSKPactGrantProcessorVoucher', 'OLSKErrorNotFilled');
+		if (inputData.OLSKPactGrantVoucher) {
+			if (!uIsFilled(inputData.OLSKPactGrantVoucher)) {
+				_error('OLSKPactGrantVoucher', 'OLSKErrorNotFilled');
 			}
 		}
 
