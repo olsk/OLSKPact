@@ -208,7 +208,6 @@ const mod = {
 			throw new Error('RCSErrorInputNotValid');
 		}
 
-
 		if (typeof inputData.OLSKPactIntentIdentity !== 'string') {
 			return false;
 		}
