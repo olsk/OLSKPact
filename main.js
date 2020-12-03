@@ -251,10 +251,6 @@ const mod = {
 			_error('OLSKPactGrantPublicNumbers', 'OLSKErrorNotFilled');
 		}
 
-		if (!uIsFilled(inputData.OLSKPactGrantIdentity)) {
-			_error('OLSKPactGrantIdentity', 'OLSKErrorNotFilled');
-		}
-
 		if (!uIsFilled(inputData.OLSKPactGrantProject)) {
 			_error('OLSKPactGrantProject', 'OLSKErrorNotFilled');
 		}

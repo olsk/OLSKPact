@@ -502,7 +502,6 @@ describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 	const uItem = function (inputData = {}) {
 		return Object.assign({
 			OLSKPactGrantPublicNumbers: ['alfa'],
-			OLSKPactGrantIdentity: 'bravo',
 			OLSKPactGrantProject: 'charlie',
 			OLSKPactGrantStartDate: new Date(),
 			OLSKPactGrantEndDate: new Date(),
@@ -535,26 +534,6 @@ describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 			OLSKPactGrantPublicNumbers: [],
 		})), {
 			OLSKPactGrantPublicNumbers: [
-				'OLSKErrorNotFilled',
-			],
-		});
-	});
-
-	it('returns object if OLSKPactGrantIdentity not string', function() {
-		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
-			OLSKPactGrantIdentity: null,
-		})), {
-			OLSKPactGrantIdentity: [
-				'OLSKErrorNotFilled',
-			],
-		});
-	});
-
-	it('returns object if OLSKPactGrantIdentity not filled', function() {
-		deepEqual(mod.OLSKPactGrantModelErrors(uItem({
-			OLSKPactGrantIdentity: ' ',
-		})), {
-			OLSKPactGrantIdentity: [
 				'OLSKErrorNotFilled',
 			],
 		});
