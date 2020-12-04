@@ -443,7 +443,7 @@ describe('OLSKPactIntentModelIsValid', function test_OLSKPactIntentModelIsValid(
 		return mod.OLSKPactIntentModelIsValid(Object.assign({
 			OLSKPactIntentIdentity: Math.random().toString(),
 			OLSKPactIntentAmount: Date.now(),
-			OLSKPactIntentFrequency: mod.OLSKPactGrantFrequencyOptions()[Date.now() % 3],
+			OLSKPactIntentFrequency: uRandomElement(mod.OLSKPactGrantFrequencyOptions()),
 			OLSKPactIntentClue: Math.random().toString(),
 			OLSKPactIntentProject: Math.random().toString(),
 		}, inputData))
