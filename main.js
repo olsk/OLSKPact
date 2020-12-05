@@ -6,6 +6,11 @@ const uIsDate = function (inputData) {
 	return (inputData instanceof Date) && !Number.isNaN(inputData.getTime());
 }
 
+const uRandomElement = function () {
+	const array = [].concat(...arguments);
+	return array[Date.now() % array.length];
+};
+
 const mod = {
 
 	OLSKPactAuthTypeEmail () {
@@ -306,6 +311,22 @@ const mod = {
 		}
 
 		throw new Error('OLSKErrorInputNotValid');
+	},
+
+	// DATA
+
+	OLSKPactDataGrantObjectValid (inputData) {
+		return Object.assign({
+			OLSKPactGrantPublicNumbers: [Math.random().toString()],
+			OLSKPactGrantProject: Math.random().toString(),
+			OLSKPactGrantStartDate: new Date(),
+			OLSKPactGrantEndDate: new Date(),
+			OLSKPactGrantContribution: 100,
+			OLSKPactGrantFrequencyOption: uRandomElement(mod.OLSKPactGrantFrequencyOptions()),
+			OLSKPactGrantProcessor: uRandomElement(mod.OLSKPactPayProcessors()),
+			OLSKPactGrantProcessorReference: Math.random().toString(),
+			OLSKPactGrantActive: true,
+		}, inputData);
 	},
 
 };
