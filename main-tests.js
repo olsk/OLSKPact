@@ -66,7 +66,7 @@ describe('OLSKPactAuthModelErrors', function test_OLSKPactAuthModelErrors() {
 			OLSKPactAuthType: mod.OLSKPactAuthTypeEmail(),
 			OLSKPactAuthIdentity: 'alfa@bravo.charlie',
 			OLSKPactAuthProof: 'delta',
-		}].concat(Array.from(arguments)));
+		}].concat(...arguments));
 	};
 
 	it('throws if not object', function() {
