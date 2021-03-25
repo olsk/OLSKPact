@@ -21,10 +21,15 @@ const mod = {
 		return 'OLSK_PACT_AUTH_TYPE_REMOTE_STORAGE';
 	},
 
+	OLSKPactAuthTypeFission () {
+		return 'OLSK_PACT_AUTH_TYPE_FISSION';
+	},
+
 	OLSKPactAuthTypes () {
 		return [
 			mod.OLSKPactAuthTypeEmail(),
 			mod.OLSKPactAuthTypeRemoteStorage(),
+			mod.OLSKPactAuthTypeFission(),
 		];
 	},
 

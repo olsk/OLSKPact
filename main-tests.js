@@ -18,12 +18,21 @@ describe('OLSKPactAuthTypeRemoteStorage', function test_OLSKPactAuthTypeRemoteSt
 
 });
 
+describe('OLSKPactAuthTypeFission', function test_OLSKPactAuthTypeFission() {
+
+	it('returns string', function () {
+		deepEqual(mod.OLSKPactAuthTypeFission(), 'OLSK_PACT_AUTH_TYPE_FISSION');
+	});
+
+});
+
 describe('OLSKPactAuthTypes', function test_OLSKPactAuthTypes() {
 
 	it('returns array', function () {
 		deepEqual(mod.OLSKPactAuthTypes(), [
 			mod.OLSKPactAuthTypeEmail(),
 			mod.OLSKPactAuthTypeRemoteStorage(),
+			mod.OLSKPactAuthTypeFission(),
 			]);
 	});
 
