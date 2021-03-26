@@ -33,7 +33,7 @@ const mod = {
 		];
 	},
 
-	OLSKPactAuthIdentityIsStorageAddress (inputData) {
+	OLSKPactAuthIdentityIsCloudAddress (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('OLSKErrorInputNotValid');
 		}
@@ -68,7 +68,7 @@ const mod = {
 		}
 
 		if (inputData.OLSKPactAuthType === mod.OLSKPactAuthTypeRemoteStorage()) {
-			if (!mod.OLSKPactAuthIdentityIsStorageAddress(inputData.OLSKPactAuthIdentity)) {
+			if (!mod.OLSKPactAuthIdentityIsCloudAddress(inputData.OLSKPactAuthIdentity)) {
 				_error('OLSKPactAuthIdentity', 'OLSKErrorNotValid');
 			}
 
@@ -98,7 +98,7 @@ const mod = {
 		}
 
 		if (inputData.OLSKPactAuthType === mod.OLSKPactAuthTypeEmail()) {
-			if (!outputData.OLSKPactAuthIdentity && !mod.OLSKPactAuthIdentityIsStorageAddress(inputData.OLSKPactAuthIdentity)) {
+			if (!outputData.OLSKPactAuthIdentity && !mod.OLSKPactAuthIdentityIsCloudAddress(inputData.OLSKPactAuthIdentity)) {
 				_error('OLSKPactAuthIdentity', 'OLSKErrorNotValid');
 			}
 		}

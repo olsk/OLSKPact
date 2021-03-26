@@ -38,32 +38,32 @@ describe('OLSKPactAuthTypes', function test_OLSKPactAuthTypes() {
 
 });
 
-describe('OLSKPactAuthIdentityIsStorageAddress', function test_OLSKPactAuthIdentityIsStorageAddress() {
+describe('OLSKPactAuthIdentityIsCloudAddress', function test_OLSKPactAuthIdentityIsCloudAddress() {
 
 	it('throws if not string', function () {
 		throws(function () {
-			mod.OLSKPactAuthIdentityIsStorageAddress(null)
+			mod.OLSKPactAuthIdentityIsCloudAddress(null)
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('returns false if no @', function() {
-		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfacharlie.delta'), false);
+		deepEqual(mod.OLSKPactAuthIdentityIsCloudAddress('alfacharlie.delta'), false);
 	});
 
 	it('returns false if no .', function() {
-		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa@charliedelta'), false);
+		deepEqual(mod.OLSKPactAuthIdentityIsCloudAddress('alfa@charliedelta'), false);
 	});
 
 	it('returns false if space', function() {
-		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa @charlie.delta'), false);
+		deepEqual(mod.OLSKPactAuthIdentityIsCloudAddress('alfa @charlie.delta'), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa@charlie.delta'), true);
+		deepEqual(mod.OLSKPactAuthIdentityIsCloudAddress('alfa@charlie.delta'), true);
 	});
 
 	it('returns true if subdomain', function() {
-		deepEqual(mod.OLSKPactAuthIdentityIsStorageAddress('alfa@charlie.delta.echo'), true);
+		deepEqual(mod.OLSKPactAuthIdentityIsCloudAddress('alfa@charlie.delta.echo'), true);
 	});
 
 });
