@@ -182,7 +182,7 @@ const mod = {
 		try {
 			Object.assign(result, JSON.parse(inputData));
 		} catch {
-			throw new Error('OLSKErrorInputFailedJSONParse');
+			console.log('OLSKPactMetadataDecompressFailedParse');
 		}
 
 		return {
