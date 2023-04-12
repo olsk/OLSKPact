@@ -682,6 +682,36 @@ describe('OLSKPactGrantModelErrors', function test_OLSKPactGrantModelErrors() {
 	
 	});
 
+	context('OLSKPactGrantTier', function () {
+		
+		it('returns object if OLSKPactGrantTier not string', function() {
+			deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+				OLSKPactGrantTier: 1,
+			})), {
+				OLSKPactGrantTier: [
+					'OLSKErrorNotFilled',
+				],
+			});
+		});
+
+		it('returns object if OLSKPactGrantTier not filled', function() {
+			deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+				OLSKPactGrantTier: ' ',
+			})), {
+				OLSKPactGrantTier: [
+					'OLSKErrorNotFilled',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mod.OLSKPactGrantModelErrors(uItem({
+				OLSKPactGrantTier: 'alfa'
+			})), null);
+		});
+	
+	});
+
 });
 
 describe('OLSKPactPayMatchProcessor', function test_OLSKPactPayMatchProcessor() {

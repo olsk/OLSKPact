@@ -304,6 +304,12 @@
 					_error('OLSKPactGrantVoucher', 'OLSKErrorNotFilled');
 				}
 			}
+			
+			if (inputData.OLSKPactGrantTier) {
+				if (!uIsFilled(inputData.OLSKPactGrantTier)) {
+					_error('OLSKPactGrantTier', 'OLSKErrorNotFilled');
+				}
+			}
 
 			return Object.entries(outputData).length ? outputData : null;
 		},
